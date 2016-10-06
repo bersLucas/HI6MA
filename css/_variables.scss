@@ -1,0 +1,36 @@
+$bezier: cubic-bezier(1,0,0,1);
+$headerHeight: 40px;
+
+//colors
+$bg: #fcb84b;
+$bg2: #534c41;
+$color1: #fff;
+$color2: #f1f1f1;
+$color3: #d9d9d9;
+
+//keyframes
+@keyframes backArrow{
+  from{padding-left: 0px;}
+  to{padding-left: 10px;}
+}
+
+@keyframes headerClose{
+  from{width:100%}
+  to{width:0}
+}
+
+@mixin ellipsis{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@keyframes frontAni{
+  from{max-height: 0px}
+  to{max-height: 2000px;}
+}
+
+@keyframes frontContent{
+  from{opacity: 0;}
+  to{opacity:1;}
+}

@@ -96,4 +96,5 @@ foreach ($mangas as $key => $value) {
 <style>
 
 </style>
-<script src="js/ms2.js"></script>
+<script src="js/hammer.js"></script>
+<script src="js/HI6MA.js"></script>

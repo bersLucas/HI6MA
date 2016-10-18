@@ -19,6 +19,7 @@ var eBook = document.getElementById("book");
 var eTitle = document.getElementById("title");
 var eHeadTitle = document.getElementById("headTitle");
 var eHTML = document.querySelector("html");
+var eFooter = document.getElementsByTagName("footer")[0];
 
 /*
     Domain
@@ -36,21 +37,13 @@ series_r = "";
 var seriesList = document.querySelectorAll("#series .book");
 
 /*
-    Burger Menu
-*/
-document.getElementById("burger").onclick = function () {
-  this.classList.toggle("openMenu");
-  document.getElementById("front").classList.toggle("hide");
-  document.getElementById("front").classList.toggle("frontAni");
-};
-
-/*
     Load from URL
 */
 //If it's a non-default URL, go to that series/ch/page
 var URL = document.URL;
 URL = URL.split("#");
 if (URL[1] != undefined) {
+  
   //remove the "/"
   if (URL[1].substr(0, 1) == "/") {
     URL[1] = URL[1].substr(1);
@@ -74,7 +67,6 @@ if (URL[1] != undefined) {
  
   //activate the sidebar
   eSidebar.classList.add("activeSidebar");
-  eSidebar.setAttribute("style", "margin-right:0%");
   
   //set the background to white
   eHTML.setAttribute("style", "background-color: #fff;");
@@ -520,3 +512,4 @@ function checkKey(e) {
 function title(page, totalPages) {
   document.title = "[" + page + "/" + totalPages + "] " + eHeadTitle.innerHTML + " | " + document.domain;
 }
+

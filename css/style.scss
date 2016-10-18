@@ -4,10 +4,10 @@
 html,body{
   overflow: scroll;
   margin: 0px;
-  background: $bg;
+  background: $color1;
   max-width: 100%;
   overflow-x: hidden;
-  color: $color1;
+  color: $bg;
   font-family: 'Lato', sans-serif;
 }
 
@@ -26,14 +26,24 @@ html.viewing{
 }
 
 sidebar{
-  background-color: $bg;
   width: 100%;
-  min-height: 100%;
+  min-height: 100vh;
   right: 0;
   transition: all 450ms $bezier;
   position: absolute;
   z-index: 50;
   top: 0;
+  
+  /*fill for the vertical scroll*/
+  &:after{
+    content: "";
+    height: calc(100vh - 20px);
+    width: 100%;
+    position: absolute;
+    display: block;
+    top: 100%;
+    pointer-events: none;
+  }
   h2,h3,h4,h5{
     margin: 0px;
     @include ellipsis;
@@ -95,6 +105,8 @@ sidebar{
       right: 0;
       @include ellipsis;
       width: 20px;
+      padding-left: 5px;
+      background-color: $bg;
     }
     header{
       animation: headerClose 450ms $bezier;
@@ -107,16 +119,17 @@ sidebar{
   #title{display: none;}
   
   #series{
-    min-height: 100%;
+    height: auto;
     width: 100%;
-    background-image: url('../mascot.png');
-    background-position: bottom right;
-    background-repeat: no-repeat;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: flex-start;
     padding-top: 5px;
+    padding-bottom: 20px;
+    top: 0px;
+    position: relative;
+    background: $bg;
     .book{
       transition: opacity 250ms;
       opacity: 1;
@@ -138,13 +151,14 @@ sidebar{
   }/*</#series>*/
   
   #chapters{
+    background-color: $bg;
     float: left;
     z-index: 9;
     margin-top: 0px;
     left: 100%;
     width: 100%;
     min-height: calc(100% - 40px);
-    top: 50px;
+    top: 44px;
     position: absolute;
   }
 } /*</sidebar>*/
@@ -248,44 +262,18 @@ header{
   display: block;
 }
 
-.viewing #burger{
+.viewing footer{
+  visibility: hidden;
   display: none;
 }
 
-#burger{
-  position: absolute;
-  top: 10px;
-  right: 5px;
-  z-index: 10;
-  &:hover{
-    cursor: pointer;
-  }
-  div{
-    width: 30px;
-    height: 3px;
-    margin: 6px;
-    background: $bg;
-    position: relative;
-    transition: all 500ms ease-out;
-  }
-  &.openMenu{
-    div{
-      background-color: $bg !important;
-      &:nth-child(1){
-        transform: rotate(45deg);
-        top: 10px;
-      }
-      &:nth-child(2){
-        transform: rotate(-45deg);
-        top: 1px;
-      }
-      &:nth-child(3){
-        width: 0px !important;
-        top: -8px;
-        left: 15px;
-      }
-    }
-  }
+footer{
+  width: 100vw;
+  height: auto;
+  padding: 0px;
+  position: fixed;
+  bottom: 0px;
+  background: #fff;
+  color: #333;
 }
-
 @import 'mobile';

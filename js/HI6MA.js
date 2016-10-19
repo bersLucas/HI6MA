@@ -67,6 +67,7 @@ if (URL[1] != undefined) {
  
   //activate the sidebar
   eSidebar.classList.add("activeSidebar");
+  //eSidebar.setAttribute("style", "margin-right:0%");
   
   //set the background to white
   eHTML.setAttribute("style", "background-color: #fff;");
@@ -87,8 +88,13 @@ if (URL[1] != undefined) {
   //TRY to get cur_chapter_R
   for (var i=0; i<seriesList.length; i++){
     if (seriesList[i].getAttribute("ID") == urlX[0]){
-      series_r = seriesList[i].children[0].innerHTML
-    }}
+      series_r = seriesList[i].children[0].innerHTML;
+    }
+  }
+  
+  if (series_r != undefined){
+    eTitle.innerHTML = series_r;
+  }
 }
 
 /*
@@ -161,7 +167,7 @@ for (var i = 0; i < seriesList.length; i++) {
 eTitle.onclick = function () {
     //reset the sidebar to normal
     eSidebar.classList.remove("activeSidebar");
-    eHeader.setAttribute("style", "left:0%");
+    eHeader.setAttribute("style", "left:0%; margin-bottom:"+eFooter.offsetHeight + "px");
   
     //show #series
     eSeries.classList.toggle("hideSeries");
@@ -295,7 +301,7 @@ function endOfChapter(){
   console.log("A");
   //reset the sidebar to normal
   eSidebar.classList.remove("activeSidebar");
-  eSidebar.setAttribute("style","margin-right:100%");
+  eSidebar.setAttribute("style","margin-right:100%;margin-bottom:"+eFooter.offsetHeight + "px");
   eHeader.setAttribute("style", "left:100%");
 
   //remove white background

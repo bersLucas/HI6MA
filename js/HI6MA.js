@@ -202,9 +202,10 @@ eBack.onclick = function () {
   //put the domain in the header
   eHeadTitle.innerHTML = domain;
 }
-  /*
-      Click and swipe events
-  */
+
+/*
+    Click and swipe events
+*/
 function readingEvents() {
   //click
   eBook.addEventListener("click", nextPage);
@@ -244,55 +245,60 @@ function readingEvents() {
   }
 }
 
+//back button
+document.getElementById("prevPage").onclick=function(){
+  prevPage();
+}
+
 /*
     Page click function
 */
 var nextPage = function (e) {
-    window.scrollTo(0, 0);
-    //e.preventDefault();
+  window.scrollTo(0, 0);
+  //e.preventDefault();
+  try {
+    //remove the click function.
+    eBook.removeEventListener("click", nextPage);
+
+    //calculate the amount to move #book
+    leftM -= document.querySelector(".currentPage").offsetWidth;
+
+    //try for a .png file
     try {
-      //remove the click function.
-      eBook.removeEventListener("click", nextPage);
-      
-      //calculate the amount to move #book
-      leftM -= document.querySelector(".currentPage").offsetWidth;
-      
-      //try for a .png file
-      try {
-        document.querySelector("#pagePNG" + currentPage).classList.toggle("currentPage");
-      }catch (e) {}
-      
-      //try for a .jpg file
-      try {
-        document.querySelector("#pageJPG" + currentPage).classList.toggle("currentPage");
-      }catch (e) {}
-      
-      currentPage++;
-      
-      //try for .png file
-      try {
-        document.querySelector("#pagePNG" + currentPage).classList.toggle("currentPage");
-      }catch (e) {}
-      
-      //try for .jpg file
-      try {
-        document.querySelector("#pageJPG" + currentPage).classList.toggle("currentPage");
-      }catch (e) {}
-      
-      //add an event listener to the next page
-      eBook.addEventListener("click", nextPage);
-      
-      //move #book as intended
-      eBook.setAttribute("style", "margin-right:" + leftM + "px");
-    }
-    catch (e) {
-      //No more pages to move forward to
-      endOfChapter();
-    }
-  
-    //Update the title
-    title(currentPage, totalPages);
+      document.querySelector("#pagePNG" + currentPage).classList.toggle("currentPage");
+    }catch (e) {}
+
+    //try for a .jpg file
+    try {
+      document.querySelector("#pageJPG" + currentPage).classList.toggle("currentPage");
+    }catch (e) {}
+
+    currentPage++;
+
+    //try for .png file
+    try {
+      document.querySelector("#pagePNG" + currentPage).classList.toggle("currentPage");
+    }catch (e) {}
+
+    //try for .jpg file
+    try {
+      document.querySelector("#pageJPG" + currentPage).classList.toggle("currentPage");
+    }catch (e) {}
+
+    //add an event listener to the next page
+    eBook.addEventListener("click", nextPage);
+
+    //move #book as intended
+    eBook.setAttribute("style", "margin-right:" + leftM + "px");
   }
+  catch (e) {
+    //No more pages to move forward to
+    endOfChapter();
+  }
+
+  //Update the title
+  title(currentPage, totalPages);
+}
 
 /*
     Return to chapter list when done with a chapter
@@ -512,6 +518,7 @@ function checkKey(e) {
     }
   }
 }
+
 /*
     Title
 */

@@ -13,16 +13,6 @@
       <div class="hide" id="back"><svg xmlns="http://www.w3.org/2000/svg" fill="#fff" viewBox="0 0 1000 1000"><path d="M794.6 120.8L684 10 196 498l485.4 492 122.8-116.4L413.5 496l381-375.2z"/></svg></div>
       <div id="headTitle"></div>
       
-      <div id="burger">
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
-      
-      <div id="front" class="hide">
-        <!--Front page-->
-        <?php include"front.php"; ?>
-      </div>
     </header>
     <div id="series">
 <?PHP
@@ -87,10 +77,16 @@ foreach ($mangas as $key => $value) {
     <div id="chapters">
 
     </div>
+    <div id="prevPage"><svg xmlns="http://www.w3.org/2000/svg" fill="#333" viewBox="0 0 1000 1000"><path d="M794.6 120.8L684 10 196 498l485.4 492 122.8-116.4L413.5 496l381-375.2z"/></svg></div>
     <span id="title"></span>
   </sidebar>
   <div id="book">
   </div>
+  
+  <footer>
+      <!--Front page-->
+      <?php include"front.php"; ?>
+  </footer>
 </body>
 
 <style>

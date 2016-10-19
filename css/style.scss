@@ -258,15 +258,19 @@ header{
   }
 }/*</#book>*/
 
-.viewing #book{
-  display: block;
+//Changes if the book is being read
+.viewing {
+  #prevPage, #book{
+    visibility: visible;
+    display: block;
+  }
+  footer{
+    visibility: hidden;
+    display: none;
+  }
 }
 
-.viewing footer{
-  visibility: hidden;
-  display: none;
-}
-
+//Footer
 footer{
   width: 100vw;
   height: auto;
@@ -275,5 +279,25 @@ footer{
   bottom: 0px;
   background: #fff;
   color: #333;
+}
+
+#prevPage{
+  position: fixed;
+  background: #fff;
+  z-index: 200;
+  height: 50px;
+  width: 50px;
+  right: 4px;
+  border: 1px solid #dcdcdc;
+  border-radius: 100%;
+  top: 4px;
+  visibility: hidden;
+  
+  svg{
+    transform: rotate(180deg);
+    height: 30px;
+    margin-top: 10px;
+    margin-left: 5px;
+  }
 }
 @import 'mobile';

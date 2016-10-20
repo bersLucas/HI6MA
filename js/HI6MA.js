@@ -95,6 +95,10 @@ if (URL[1] != undefined) {
   if (series_r != undefined){
     eTitle.innerHTML = series_r;
   }
+  
+  //Populate #chapters with the information available.  
+  var chapterList = document.querySelector("#"+cur_Series+" .chapList").innerHTML;
+  document.getElementById("chapters").innerHTML = chapterList;
 }
 
 /*
@@ -340,7 +344,7 @@ var prevPage = function () {
         eBook.removeEventListener("click", nextPage);
         
         //calculate the amount to move #book
-        leftM += document.querySelector(".currentPage").offsetWidth;
+        leftM += document.querySelector(".currentPage").previousElementSibling.offsetWidth;
        
         //try for a .png file
         try {

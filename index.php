@@ -38,7 +38,8 @@ while ($f = @readdir($od)) {
     $mangas[$counter]->name = $data[0];
     $mangas[$counter]->kanji = $data[1];
     $mangas[$counter]->author = $data[2];
-
+    $mangas[$counter]->TL = $data[3];
+    
     $od2 = @opendir("i/".$f);
     while ($g= @readdir($od2)) {
       if (is_dir("i/" . $f . "/" . $g) && $g != "." && $g != "..") {
@@ -57,12 +58,19 @@ foreach ($mangas as $key => $value) {
   echo "<h2>".$value->name."</h2>";
   echo "<h3>".$value->author."</h3>";
   echo "<img src='i/".$value->folder."/cover.jpg'/>"; 
+  
   if ($value->kanji == ""){
-    echo "<h4 class='hide' style='color: transparent'>_</h4>";
+    echo "<h4 class='hide'>_</h4>";
   } else{
     echo "<h4>".$value->kanji."</h4>";
   }
-
+  
+  if ($value->TL == ""){
+    echo "<h5 class='hide'></h5>";
+  } else{
+    echo "<h5>".$value->TL."</h5>";
+  }
+  
   echo "<div class='chapList'><ul>";
   foreach ($value->chapters as $value2){
     $value3 = preg_replace("/[^A-Za-z0-9 ]/", '', $value2);

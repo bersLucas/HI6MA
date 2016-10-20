@@ -85,7 +85,7 @@ if (URL[1] != undefined) {
   document.getElementById("title").innerHTML = document.domain;
   loadBook();
   
-  //TRY to get cur_chapter_R
+  //TRY to get the current series' name
   for (var i=0; i<seriesList.length; i++){
     if (seriesList[i].getAttribute("ID") == urlX[0]){
       series_r = seriesList[i].children[0].innerHTML;
@@ -136,22 +136,29 @@ for (var i = 0; i < seriesList.length; i++) {
         //activate the sidebar
         eSidebar.classList.add("activeSidebar");
         eSidebar.setAttribute("style", "margin-right:0%");
+        
         //hide the back button
         eBack.classList.add("hide");
+       
         //set the background to white
         eHTML.setAttribute("style", "background-color: #fff;");
         document.getElementsByTagName("body")[0].setAttribute("style", "background-color: #fff;");
+       
         //move to the first page
         eBook.setAttribute("style", "margin-right:30px");
+        
         //hide the vertical scroll (and mobile css)
         eHTML.classList.toggle("viewing");
+        
         //reset counters
         leftM = 30;
         currentPage = 1;
+        
         //get the chapter info and put it in #book
         eBook.setAttribute("cur_chapter", this.getAttribute("id"));
         eBook.setAttribute("chapter_r", this.innerHTML);
         eTitle.innerHTML = eHeadTitle.innerHTML;
+       
         //run book functions
         loadBook();
         readingEvents();
@@ -245,11 +252,6 @@ function readingEvents() {
   }
 }
 
-//back button
-document.getElementById("prevPage").onclick=function(){
-  prevPage();
-}
-
 /*
     Page click function
 */
@@ -304,7 +306,6 @@ var nextPage = function (e) {
     Return to chapter list when done with a chapter
 */
 function endOfChapter(){
-  console.log("A");
   //reset the sidebar to normal
   eSidebar.classList.remove("activeSidebar");
   eSidebar.setAttribute("style","margin-right:100%;margin-bottom:"+eFooter.offsetHeight + "px");
@@ -379,9 +380,10 @@ var prevPage = function () {
       title(currentPage, totalPages);
     }
   }
-  /*
-      Putting pages onto a #book
-  */
+
+/*
+    Putting pages onto a #book
+*/
 function loadBook() {
   //current series
   series = eBook.getAttribute("cur_series");
@@ -421,9 +423,15 @@ function loadBook() {
   document.querySelector("#pagePNG1").classList.add("currentPage");
   document.querySelector("#pageJPG1").classList.add("currentPage");
   
+  //back button
+  document.getElementById("prevPage").onclick=function(){
+    prevPage();
+  }
+  
   //load the next page
   loadImg(page);
 }
+
 /*
     Load an image
 */
@@ -483,6 +491,7 @@ function removeBroken(x) {
   }
   catch (e) {}
 }
+
 /*
     Format an integer into a 3-digit string
 */

@@ -67,7 +67,7 @@ sidebar{
     padding: 4px;
   }
   
-  h4{
+  h4,h5{
     font-size: 11px;
     line-height: 15px;
     background-color: $bg2;
@@ -77,6 +77,11 @@ sidebar{
     margin-top: -25px;
     z-index: 5;
     position: relative;
+  }
+  
+  h5{
+    margin-top: 0px;
+    background-color: darken($bg2, 10%);
   }
   
   &.activeSidebar{

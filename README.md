@@ -12,16 +12,17 @@ HI6MA was created to give users a larger reading area and remove dependency on j
   * **data.txt** : Metadata for the series, which will appear as follows:
 ```
 [Series name]
-additional information
-additional information
-...
+[Author]
+[Alt. Title (kanji)]
+[Translator or tag info]
 ```
 > *An example of a valid data.txt file would be*:
 
 ```
-Dead Dead Demon's de DeDeDe Destruction
+Dead Dead Demon's
 &#12487;&#12487;&#12487;
 Asano Inio
+Translator's Name
 ```
 <sub>*(note how kanji and non-standard charecters must be in html charecter codes)*</sub>
   * **A folder for each chapter** : It is inside this folder that individual pages will be added.

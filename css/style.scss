@@ -166,6 +166,16 @@ sidebar{
     top: 44px;
     position: absolute;
   }
+  
+  //fixes a text select bug on mobile
+  #prevPage, #title{
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
 } /*</sidebar>*/
 
 header{

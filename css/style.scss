@@ -13,7 +13,6 @@ html,body{
 
 html.viewing{
   overflow-y: hidden;
-  overflow-y: hidden;
 }
 
 .hide,
@@ -268,7 +267,7 @@ header{
     float: right;
     height: 100%;
     &:hover{
-      cursor:pointer;
+      //cursor:pointer;
     }
   }
 }/*</#book>*/
@@ -282,6 +281,9 @@ header{
   footer{
     visibility: hidden;
     display: none;
+  }
+  #book:hover{
+    cursor: w-resize !important;
   }
 }
 

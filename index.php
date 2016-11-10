@@ -1,104 +1,138 @@
 <!doctype>
+<?php include"load.php"; ?>
+<script>books = <?php echo getSeries(); ?>;</script>
 <head>
-<link href="css/reset.css" rel="stylesheet" type="text/css">
-<link href="css/style.css" rel="stylesheet" type="text/css">
-<meta name="viewport" content="minimal-ui, width=device-width, user-scalable=no"/>
-<meta charset="utf-8">
-<title>(ﾉ^ヮ^)ﾉ*</title>
+  <link href="css/reset.css" rel="stylesheet" type="text/css">
+  <link href="css/style.css" rel="stylesheet" type="text/css">
+  <meta name="viewport" content="minimal-ui, width=device-width, user-scalable=no"/>
+  <meta charset="utf-8">
+  <title>(ﾉ^ヮ^)ﾉ*</title>
 </head>
 
 <body>
-  <sidebar>
+  <sidebar id="menu">
+    <!--Header-->
     <header>
-      <div class="hide" id="back"><svg xmlns="http://www.w3.org/2000/svg" fill="#fff" viewBox="0 0 1000 1000"><path d="M794.6 120.8L684 10 196 498l485.4 492 122.8-116.4L413.5 496l381-375.2z"/></svg></div>
-      <div id="headTitle"></div>
-      
+      <button v-if="openChapter" v-on:click="closeBook" id="back">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="#fff" viewBox="0 0 1000 1000"><path d="M794.6 120.8L684 10 196 498l485.4 492 122.8-116.4L413.5 496l381-375.2z"/></svg>
+      </button>
+      <div id="headTitle">
+        <span v-if="openChapter">{{series_name}}</span>
+        <span v-else>{{domain}}</span>
+      </div>
     </header>
-    <div id="series">
-<?PHP
-
-class manga{
-  public $folder = 'value 1';
-  public $name = 'value 2';
-  public $kanji= 'value 3';
-  public $author= 'value 3';
-  public $chapters=array();
-}
-  
-$od = @opendir("i");
-$counter = 0;
-      
-while ($f = @readdir($od)) {
-  if (is_dir("i/" . $f) && $f != "." && $f != "..") {
-    $data_file = file_get_contents("i/".$f."/data.txt",FILE_USE_INCLUDE_PATH);
-    $data = explode(PHP_EOL, $data_file);
-
-    $mangas[$counter] = new manga();
-    $mangas[$counter]->folder = $f;
-    $mangas[$counter]->name = $data[0];
-    $mangas[$counter]->kanji = $data[1];
-    $mangas[$counter]->author = $data[2];
-    $mangas[$counter]->TL = $data[3];
     
-    $od2 = @opendir("i/".$f);
-    while ($g= @readdir($od2)) {
-      if (is_dir("i/" . $f . "/" . $g) && $g != "." && $g != "..") {
-        $mangas[$counter]->chapters[] = $g;
-      }
-    }
-    sort($mangas[$counter]->chapters);
-    $counter++;
-  }
-}
-
-sort($mangas);
-
-foreach ($mangas as $key => $value) {
-  echo "<div class='book' id='".$value->folder."'>";
-  echo "<h2>".$value->name."</h2>";
-  echo "<h3>".$value->author."</h3>";
-  echo "<img src='i/".$value->folder."/cover.jpg'/>"; 
-  
-  if ($value->kanji == ""){
-    echo "<h4 class='hide'>_</h4>";
-  } else{
-    echo "<h4>".$value->kanji."</h4>";
-  }
-  
-  if ($value->TL == ""){
-    echo "<h5 class='hide'></h5>";
-  } else{
-    echo "<h5>".$value->TL."</h5>";
-  }
-  
-  echo "<div class='chapList'><ul>";
-  foreach ($value->chapters as $value2){
-    $value3 = preg_replace("/[^A-Za-z0-9 ]/", '', $value2);
-    $value3 = str_replace(" ","",$value3);
-    echo "<li id='".$value3."'>".$value2."</li></a>";
-  }
-  echo "</ul></div>";
-  echo "</div>";
-}
-?>
+    <!--Chapter list-->
+    <div id="chapters" v-bind:class="{openChapter: openChapter, slideOut: readingBook}">
+      <ul>
+        <li v-for="(chapter, index) in loadedChapters" v-bind:id="truncate(index)" v-on:click="loadChapter(index)">
+          {{chapter}}
+        </li>
+      </ul>
     </div>
-    <div id="chapters">
-
+    
+    <!--Book list-->
+    <div id="series">
+      <div class="book" v-for="(book, index) in booklist" v-bind:id="book.folder" v-on:click="openBook(index)">
+        <h2>{{book.name}}</h2>
+        <h3>{{book.author}}</h3>
+        <img v-bind:src="bookCover(index)"/>
+        <h4>{{book.kanji}}</h4>
+        <h5>{{book.TL}}</h5>
+      </div>
     </div>
+    
+    <!--Reading button-->
     <div id="prevPage"><svg xmlns="http://www.w3.org/2000/svg" fill="#333" viewBox="0 0 1000 1000"><path d="M794.6 120.8L684 10 196 498l485.4 492 122.8-116.4L413.5 496l381-375.2z"/></svg></div>
-    <span id="title"></span>
+    
+    <!--Title button-->
+    <span v-if="readingBook" id="title">
+      {{series_name}}
+    </span>
   </sidebar>
-  <div id="book">
-  </div>
+  
+  <!--Pages-->
+  <div id="book"></div>
   
   <footer>
       <!--Front page-->
       <?php include"front.php"; ?>
+
   </footer>
 </body>
 
-<style>
-
-</style>
-<script src="js/hammer.js"></script>
 <script src="js/HI6MA.js"></script>
+<script src="js/vue.min.js"></script>
+<script src="js/hammer.js"></script>
+
+<script>
+var domain = document.domain;
+if (domain.substr(0, 3) === "www") {
+  domain = domain.substr(4, domain.length);
+}
+  
+var bookList = new Vue({
+  el: '#menu',
+  data: {
+    //Array of all books
+    booklist: books,
+    
+    //Display states
+    openChapter: false,
+    readingBook: false,
+    
+    //Text variables
+    series_name: "",
+    domain: domain,
+    
+    //Chapter list
+    loadedChapters: new Array()
+  },
+  methods: {
+    //Fetch covers
+    bookCover: function(id) {
+      var cover = "i/" + this.booklist[id].folder;
+      cover += "/cover.jpg";
+      return cover;
+    },
+    
+    //click on a book
+    openBook: function(id){
+      this.openChapter = true;
+      this.loadedChapters = this.booklist[id].chapters;
+      series = this.booklist[id].folder;
+      eBook.setAttribute("cur-series", series);
+      
+      this.series_name = this.booklist[id].name;
+    },
+    
+    //back button
+    closeBook: function(){
+      this.openChapter = false;
+      this.loadedChapters = [""];
+    },
+    
+    //Load a chapter
+    loadChapter: function(id){
+      chapter_r = this.loadedChapters[id];
+      var chapterID = this.loadedChapters[id];
+      chapter = chapterID.replace(/\W/g, '');
+      
+      eBook.setAttribute("cur-chapter", chapter);
+      eBook.setAttribute("cur-chapter_r", chapter_r);
+      
+      this.readingBook = true;
+      
+      loadBook();
+      readingEvents();
+      window.scrollTo(0, 0);
+    },
+    
+    //remove non alpha-numberic characters
+    truncate: function(id){
+      var chapterID = this.loadedChapters[id];
+      return chapterID.replace(/\W/g, '');
+    }
+  }
+});
+</script>

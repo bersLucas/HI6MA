@@ -28,10 +28,12 @@ var domain = document.domain;
 if (domain.substr(0, 3) === "www") {
   domain = domain.substr(4, domain.length);
 }
-eHeadTitle.innerHTML = domain;
-cur_Series = "";
-cur_Chaper = "";
+
+//eHeadTitle.innerHTML = domain;
+series = "";
+chaper = "";
 series_r = "";
+chaper_r = "";
 
 //Array of all books
 var seriesList = document.querySelectorAll("#series .book");
@@ -53,17 +55,17 @@ if (URL[1] != undefined) {
   URL[1] = URL[1].split("#");
   URL[1] = URL[1][URL[1].length - 1];
   var urlX = URL[1].split("_");
-  cur_Series = urlX[0];
-  cur_Chapter = urlX[1];
+  series = urlX[0];
+  chapter = urlX[1];
   
   //current series
-  eBook.setAttribute("cur_series", cur_Series);
+  eBook.setAttribute("cur-series", series);
   
   //current chapter ID
-  eBook.setAttribute("cur_chapter", cur_Chapter);
+  eBook.setAttribute("cur-chapter", chapter);
   
   //current chapter title
-  eBook.setAttribute("chapter_r", document.getElementById(cur_Chapter).innerHTML);
+  eBook.setAttribute("cur-chapter_r", document.getElementById(chapter).innerHTML);
  
   //activate the sidebar
   eSidebar.classList.add("activeSidebar");
@@ -97,79 +99,8 @@ if (URL[1] != undefined) {
   }
   
   //Populate #chapters with the information available.  
-  var chapterList = document.querySelector("#"+cur_Series+" .chapList").innerHTML;
+  var chapterList = document.querySelector("#"+series+" .chapList").innerHTML;
   document.getElementById("chapters").innerHTML = chapterList;
-}
-
-/*
-    Movement
-*/
-for (var i = 0; i < seriesList.length; i++) {
-  /*
-      Clicking on a book
-  */
-  seriesList[i].onclick = function () {
-    //move to the chapters
-    eSidebar.setAttribute("style", "margin-right:100%");
-    eHeader.setAttribute("style", "left:100%");
-    
-    //show the back button
-    eBack.classList.toggle("hide");
-  
-    //hide #series (this prevents a vertical scroll)
-    eSeries.classList.toggle("hideSeries");
-  
-    //put the series' info in #book
-    eBook.setAttribute("cur_series", this.getAttribute("id"));
-   
-    //populate #series
-    var chapterList = this.querySelector(".chapList").innerHTML;
-    document.getElementById("chapters").innerHTML = chapterList;
-    
-    //put the series title in the header
-    series_r = this.querySelector("h2").innerHTML;
-    window.scrollTo(0, 0);
-    eHeadTitle.innerHTML = series_r; 
-   
-    /*
-        Clicking on a chapter
-    */
-    var chapList = document.querySelectorAll("#chapters li");
-    for (var i = 0; i < chapList.length; i++) {
-      chapList[i].onclick = function () {
-        //activate the sidebar
-        eSidebar.classList.add("activeSidebar");
-        eSidebar.setAttribute("style", "margin-right:0%");
-        
-        //hide the back button
-        eBack.classList.add("hide");
-       
-        //set the background to white
-        eHTML.setAttribute("style", "background-color: #fff;");
-        document.getElementsByTagName("body")[0].setAttribute("style", "background-color: #fff;");
-       
-        //move to the first page
-        eBook.setAttribute("style", "margin-right:30px");
-        
-        //hide the vertical scroll (and mobile css)
-        eHTML.classList.toggle("viewing");
-        
-        //reset counters
-        leftM = 30;
-        currentPage = 1;
-        
-        //get the chapter info and put it in #book
-        eBook.setAttribute("cur_chapter", this.getAttribute("id"));
-        eBook.setAttribute("chapter_r", this.innerHTML);
-        eTitle.innerHTML = eHeadTitle.innerHTML;
-       
-        //run book functions
-        loadBook();
-        readingEvents();
-        window.scrollTo(0, 0);
-      }
-    }
-  }
 }
 
 /*
@@ -390,13 +321,13 @@ var prevPage = function () {
 */
 function loadBook() {
   //current series
-  series = eBook.getAttribute("cur_series");
+  series = eBook.getAttribute("cur-series");
  
   //current chapter
-  chapter = eBook.getAttribute("cur_chapter");
+  chapter = eBook.getAttribute("cur-chapter");
  
   //current chapter (unformatted string)
-  chapter_r = eBook.getAttribute("chapter_r");
+  chapter_r = eBook.getAttribute("cur-chapter_r");
  
   //add the current chapter to the hash
   location.hash = series + "_" + chapter;

@@ -123,6 +123,7 @@ sidebar{
       left: inherit;
       display: none;
     }
+    
   }/*</.activeSidebar>*/
   //#title{display: none;}
   
@@ -252,6 +253,7 @@ header{
   }/*</#back>*/
   #headTitle{
     width: 100%;
+    color: $bg2;
     font-size: $headerHeight / 1.5;
     margin-top: 5px;
     width: calc(100% - 70px);
@@ -276,7 +278,6 @@ header{
   position: absolute;
   z-index: 5;
   transition: all 300ms ease-out;
-  display: none;
   img{
     float: right;
     height: 100%;
@@ -322,7 +323,6 @@ footer{
   border: 1px solid #dcdcdc;
   border-radius: 100%;
   top: 4px;
-  visibility: hidden;
   
   svg{
     transform: rotate(180deg);

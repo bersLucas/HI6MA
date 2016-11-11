@@ -10,14 +10,14 @@
 </head>
 
 <body>
-  <sidebar id="menu">
+  <sidebar id="menu" v-bind:class="{activeSidebar: readingBook}">
     <!--Header-->
     <header>
       <button v-if="openChapter" v-on:click="closeBook" id="back">
         <svg xmlns="http://www.w3.org/2000/svg" fill="#fff" viewBox="0 0 1000 1000"><path d="M794.6 120.8L684 10 196 498l485.4 492 122.8-116.4L413.5 496l381-375.2z"/></svg>
       </button>
       <div id="headTitle">
-        <span v-if="openChapter">{{series_name}}</span>
+        <span v-if="openChapter">{{series_full}}</span>
         <span v-else>{{domain}}</span>
       </div>
     </header>
@@ -25,7 +25,7 @@
     <!--Chapter list-->
     <div id="chapters" v-bind:class="{openChapter: openChapter, slideOut: readingBook}">
       <ul>
-        <li v-for="(chapter, index) in loadedChapters" v-bind:id="truncate(index)" v-on:click="loadChapter(index)">
+        <li v-for="(chapter, index) in loadedChapters" v-bind:id="truncateChapter(index)" v-on:click="loadChapter(index)">
           {{chapter}}
         </li>
       </ul>
@@ -34,20 +34,20 @@
     <!--Book list-->
     <div id="series">
       <div class="book" v-for="(book, index) in booklist" v-bind:id="book.folder" v-on:click="openBook(index)">
-        <h2>{{book.name}}</h2>
-        <h3>{{book.author}}</h3>
+        <h2 v-if="checkEmpty(book.name)">{{book.name}}</h2>
+        <h3 v-if="checkEmpty(book.author)">{{book.author}}</h3>
         <img v-bind:src="bookCover(index)"/>
-        <h4>{{book.kanji}}</h4>
-        <h5>{{book.TL}}</h5>
+        <h4 v-if="checkEmpty(book.kanji)">{{book.kanji}}</h4>
+        <h5 v-if="checkEmpty(book.TL)">{{book.TL}}</h5>
       </div>
     </div>
     
     <!--Reading button-->
-    <div id="prevPage"><svg xmlns="http://www.w3.org/2000/svg" fill="#333" viewBox="0 0 1000 1000"><path d="M794.6 120.8L684 10 196 498l485.4 492 122.8-116.4L413.5 496l381-375.2z"/></svg></div>
+    <div id="prevPage" v-if="readingBook"><svg xmlns="http://www.w3.org/2000/svg" fill="#333" viewBox="0 0 1000 1000"><path d="M794.6 120.8L684 10 196 498l485.4 492 122.8-116.4L413.5 496l381-375.2z"/></svg></div>
     
     <!--Title button-->
-    <span v-if="readingBook" id="title">
-      {{series_name}}
+    <span v-if="readingBook" id="title" v-on:click="returnToSeriesList()">
+      {{series_full}}
     </span>
   </sidebar>
   

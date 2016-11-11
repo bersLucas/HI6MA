@@ -54,7 +54,7 @@ sidebar{
     color: $bg;
     padding: 0px 5px;
     background-color: #fff;
-    color: #333;
+    color: $color2;
   }
 
   h2{
@@ -84,7 +84,7 @@ sidebar{
   
   h5{
     margin-top: 0px;
-    background-color: darken($bg2, 10%);
+    background-color: darken($bg2, 5%);
   }
   
   &.activeSidebar{

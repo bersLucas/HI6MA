@@ -39,4 +39,5 @@ Colors are represented in sass variabless. Use **css/_variables.scss** to edit t
 
 ##Dependencies 
 <a href="http://hammerjs.github.io/">Hammer.js</a> - Mobile swiping events.
+
 <a href="https://github.com/vuejs/vue">Vue.js</a> - Interface library

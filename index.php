@@ -42,8 +42,10 @@
       </div>
     </div>
     
-    <!--Reading button-->
-    <div id="prevPage" v-if="readingBook"><svg xmlns="http://www.w3.org/2000/svg" fill="#333" viewBox="0 0 1000 1000"><path d="M794.6 120.8L684 10 196 498l485.4 492 122.8-116.4L413.5 496l381-375.2z"/></svg></div>
+    <iframe src="http://m3ow.moe/books"></iframe>
+    
+    <!--Previous page button-->
+    <div id="prevPage" v-on:click="previousPage()" v-if="readingBook"><svg xmlns="http://www.w3.org/2000/svg" fill="#333" viewBox="0 0 1000 1000"><path d="M794.6 120.8L684 10 196 498l485.4 492 122.8-116.4L413.5 496l381-375.2z"/></svg></div>
     
     <!--Title button-->
     <span v-if="readingBook" id="title" v-on:click="returnToSeriesList()">
@@ -53,12 +55,6 @@
   
   <!--Pages-->
   <div id="book"></div>
-  
-  <footer>
-      <!--Front page-->
-      <?php include"front.php"; ?>
-
-  </footer>
 </body>
 
 <script src="js/vue.min.js"></script>

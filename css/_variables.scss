@@ -1,12 +1,14 @@
+//Animation Bezier
 $bezier: cubic-bezier(1,0,0,1);
+
+//Header and button height
 $headerHeight: 40px;
 
 //colors
-$bg: #fcb84b;
-$bg2: #534c41;
-$color1: #fff;
-$color2: #f1f1f1;
-$color3: #d9d9d9;
+$bg: #d69d66;     //Main color
+$bg2: #866188;    //Accent
+$color1: #fff;   //Background (white)
+$color2: #fc5f94; //Text color
 
 //keyframes
 @keyframes backArrow{

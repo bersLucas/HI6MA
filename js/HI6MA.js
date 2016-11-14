@@ -1,4 +1,5 @@
 /*
+/*
     Init
 */
 //page constraints
@@ -28,10 +29,12 @@ var domain = document.domain;
 if (domain.substr(0, 3) === "www") {
   domain = domain.substr(4, domain.length);
 }
-eHeadTitle.innerHTML = domain;
-cur_Series = "";
-cur_Chaper = "";
+
+//eHeadTitle.innerHTML = domain;
+series = "";
+chapter = "";
 series_r = "";
+chapter_r = "";
 
 //Array of all books
 var seriesList = document.querySelectorAll("#series .book");
@@ -42,7 +45,7 @@ var seriesList = document.querySelectorAll("#series .book");
 //If it's a non-default URL, go to that series/ch/page
 var URL = document.URL;
 URL = URL.split("#");
-if (URL[1] != undefined) {
+if (URL[1] != undefined && URL[1].length > 2) {
   
   //remove the "/"
   if (URL[1].substr(0, 1) == "/") {
@@ -53,165 +56,34 @@ if (URL[1] != undefined) {
   URL[1] = URL[1].split("#");
   URL[1] = URL[1][URL[1].length - 1];
   var urlX = URL[1].split("_");
-  cur_Series = urlX[0];
-  cur_Chapter = urlX[1];
+  HI6MA.series = urlX[0];
+  HI6MA.chapter = urlX[1];
   
-  //current series
-  eBook.setAttribute("cur_series", cur_Series);
-  
-  //current chapter ID
-  eBook.setAttribute("cur_chapter", cur_Chapter);
-  
-  //current chapter title
-  eBook.setAttribute("chapter_r", document.getElementById(cur_Chapter).innerHTML);
- 
   //activate the sidebar
-  eSidebar.classList.add("activeSidebar");
-  //eSidebar.setAttribute("style", "margin-right:0%");
+  HI6MA.readingBook = true;
   
-  //set the background to white
-  eHTML.setAttribute("style", "background-color: #fff;");
-  document.getElementsByTagName("body")[0].setAttribute("style", "background-color: #fff;");
   
   //move to the first page
-  eBook.setAttribute("style", "margin-right:30px");
+  eBook.setAttribute("style", "transform: translateX(-30px)");
  
-  //hide the vertical scroll (and mobile css)
-  eHTML.classList.toggle("viewing");
+  //TRY to get the current series' name, series, and chapter
+  for (var i=0; i<HI6MA.booklist.length; i++){
+    if (HI6MA.booklist[i].folder == HI6MA.series){
+      HI6MA.series_full = HI6MA.booklist[i].name;
+      HI6MA.loadedChapters = HI6MA.booklist[i].chapters;
+      
+      for (var j=0; j<HI6MA.booklist[i].chapters.length; j++){
+        if (truncate(HI6MA.booklist[i].chapters[j]) == HI6MA.chapter){
+          HI6MA.chapter_full = HI6MA.booklist[i].chapters[j];
+        }
+      }
+    }
+  }
   
   //reset counters
   leftM = 30;
   currentPage = 1;
-  document.getElementById("title").innerHTML = document.domain;
   loadBook();
-  
-  //TRY to get the current series' name
-  for (var i=0; i<seriesList.length; i++){
-    if (seriesList[i].getAttribute("ID") == urlX[0]){
-      series_r = seriesList[i].children[0].innerHTML;
-    }
-  }
-  
-  if (series_r != undefined){
-    eTitle.innerHTML = series_r;
-  }
-  
-  //Populate #chapters with the information available.  
-  var chapterList = document.querySelector("#"+cur_Series+" .chapList").innerHTML;
-  document.getElementById("chapters").innerHTML = chapterList;
-}
-
-/*
-    Movement
-*/
-for (var i = 0; i < seriesList.length; i++) {
-  /*
-      Clicking on a book
-  */
-  seriesList[i].onclick = function () {
-    //move to the chapters
-    eSidebar.setAttribute("style", "margin-right:100%");
-    eHeader.setAttribute("style", "left:100%");
-    
-    //show the back button
-    eBack.classList.toggle("hide");
-  
-    //hide #series (this prevents a vertical scroll)
-    eSeries.classList.toggle("hideSeries");
-  
-    //put the series' info in #book
-    eBook.setAttribute("cur_series", this.getAttribute("id"));
-   
-    //populate #series
-    var chapterList = this.querySelector(".chapList").innerHTML;
-    document.getElementById("chapters").innerHTML = chapterList;
-    
-    //put the series title in the header
-    series_r = this.querySelector("h2").innerHTML;
-    window.scrollTo(0, 0);
-    eHeadTitle.innerHTML = series_r; 
-   
-    /*
-        Clicking on a chapter
-    */
-    var chapList = document.querySelectorAll("#chapters li");
-    for (var i = 0; i < chapList.length; i++) {
-      chapList[i].onclick = function () {
-        //activate the sidebar
-        eSidebar.classList.add("activeSidebar");
-        eSidebar.setAttribute("style", "margin-right:0%");
-        
-        //hide the back button
-        eBack.classList.add("hide");
-       
-        //set the background to white
-        eHTML.setAttribute("style", "background-color: #fff;");
-        document.getElementsByTagName("body")[0].setAttribute("style", "background-color: #fff;");
-       
-        //move to the first page
-        eBook.setAttribute("style", "margin-right:30px");
-        
-        //hide the vertical scroll (and mobile css)
-        eHTML.classList.toggle("viewing");
-        
-        //reset counters
-        leftM = 30;
-        currentPage = 1;
-        
-        //get the chapter info and put it in #book
-        eBook.setAttribute("cur_chapter", this.getAttribute("id"));
-        eBook.setAttribute("chapter_r", this.innerHTML);
-        eTitle.innerHTML = eHeadTitle.innerHTML;
-       
-        //run book functions
-        loadBook();
-        readingEvents();
-        window.scrollTo(0, 0);
-      }
-    }
-  }
-}
-
-/*
-    Clicking on the title (return button)
-*/
-eTitle.onclick = function () {
-    //reset the sidebar to normal
-    eSidebar.classList.remove("activeSidebar");
-    eHeader.setAttribute("style", "left:0%; margin-bottom:"+eFooter.offsetHeight + "px");
-  
-    //show #series
-    eSeries.classList.toggle("hideSeries");
-  
-    //remove white background
-    eHTML.setAttribute("style", "");
-    document.getElementsByTagName("body")[0].setAttribute("style", "");
-  
-    //remove all loaded pages
-    eBook.innerHTML = "";
-  
-    //put the domain in the header
-    eHeadTitle.innerHTML = domain;
-  
-    //Allow vertical scroll on body
-    eHTML.classList.toggle("viewing");
-    window.scrollTo(0, 0);
-}
-
-/*
-    Clicking on the back button
-*/
-eBack.onclick = function () {
-  //hide the back button
-  this.classList.add("hide");
-  
-  //return to #series
-  eSeries.classList.toggle("hideSeries");
-  eSidebar.setAttribute("style", "margin-right:0%");
-  eHeader.setAttribute("style", "left:0%");
-  
-  //put the domain in the header
-  eHeadTitle.innerHTML = domain;
 }
 
 /*
@@ -267,7 +139,7 @@ var nextPage = function (e) {
     eBook.removeEventListener("click", nextPage);
 
     //calculate the amount to move #book
-    leftM -= document.querySelector(".currentPage").offsetWidth;
+    leftM += document.querySelector(".currentPage").offsetWidth;
 
     //try for a .png file
     try {
@@ -295,7 +167,7 @@ var nextPage = function (e) {
     eBook.addEventListener("click", nextPage);
 
     //move #book as intended
-    eBook.setAttribute("style", "margin-right:" + leftM + "px");
+    eBook.setAttribute("style", "transform: translateX(" + leftM + "px)");
   }
   catch (e) {
     //No more pages to move forward to
@@ -310,96 +182,69 @@ var nextPage = function (e) {
     Return to chapter list when done with a chapter
 */
 function endOfChapter(){
-  //reset the sidebar to normal
-  eSidebar.classList.remove("activeSidebar");
-  eSidebar.setAttribute("style","margin-right:100%;margin-bottom:"+eFooter.offsetHeight + "px");
-  eHeader.setAttribute("style", "left:100%");
-
-  //remove white background
-  eHTML.setAttribute("style", "");
-  document.getElementsByTagName("body")[0].setAttribute("style", "");
-
-  //remove all loaded pages
-  eBook.innerHTML = "";
-
-  //Put the series name in the header
-  eHeadTitle.innerHTML = series_r;
+  HI6MA.readingBook = false;
+  HI6MA.openChapter = true;
   
-  /*
-  !!!   How to put chapter list when it wasn't loaded (hash url)??
-  */
-  
-  //Allow vertical scroll on body
-  eHTML.classList.toggle("viewing");
-  window.scrollTo(0, 0);
+  eBook.setAttribute("style","transform: translateX(-30px)");
 }
 
 /*
     Page back function
 */
 var prevPage = function () {
-    if (currentPage > 1) {
+  if (currentPage > 1) {
+    try {
+      //remove the click function.
+      eBook.removeEventListener("click", nextPage);
+
+      //calculate the amount to move #book
+      leftM -= document.querySelector(".currentPage").previousElementSibling.offsetWidth;
+
+      //try for a .png file
       try {
-        //remove the click function.
-        eBook.removeEventListener("click", nextPage);
-        
-        //calculate the amount to move #book
-        leftM += document.querySelector(".currentPage").previousElementSibling.offsetWidth;
-       
-        //try for a .png file
-        try {
-          document.querySelector("#pagePNG" + currentPage).classList.toggle("currentPage");
-        }
-        catch (e) {}
-        
-        //try for a .jpg file
-        try {
-          document.querySelector("#pageJPG" + currentPage).classList.toggle("currentPage");
-        }
-        catch (e) {}
-        
-        currentPage--;
-        
-        //try for .png file
-        try {
-          document.querySelector("#pagePNG" + currentPage).classList.toggle("currentPage");
-        }
-        catch (e) {}
-        
-        //try for .jpg file
-        try {
-          document.querySelector("#pageJPG" + currentPage).classList.toggle("currentPage");
-        }
-        catch (e) {}
-       
-        //add an event listener to the next page
-        eBook.addEventListener("click", nextPage);
-       
-        //move #book as intended
-        eBook.setAttribute("style", "margin-right:" + leftM + "px");
+        document.querySelector("#pagePNG" + currentPage).classList.toggle("currentPage");
       }
       catch (e) {}
-      
-      //Update the title
-      title(currentPage, totalPages);
+
+      //try for a .jpg file
+      try {
+        document.querySelector("#pageJPG" + currentPage).classList.toggle("currentPage");
+      }
+      catch (e) {}
+
+      currentPage--;
+
+      //try for .png file
+      try {
+        document.querySelector("#pagePNG" + currentPage).classList.toggle("currentPage");
+      }
+      catch (e) {}
+
+      //try for .jpg file
+      try {
+        document.querySelector("#pageJPG" + currentPage).classList.toggle("currentPage");
+      }
+      catch (e) {}
+
+      //add an event listener to the next page
+      eBook.addEventListener("click", nextPage);
+
+      //move #book as intended
+      eBook.setAttribute("style", "transform: translateX(" + leftM + "px)");
     }
+    catch (e) {}
+
+    //Update the title
+    title(currentPage, totalPages);
   }
+}
 
 /*
     Putting pages onto a #book
 */
 function loadBook() {
-  //current series
-  series = eBook.getAttribute("cur_series");
- 
-  //current chapter
-  chapter = eBook.getAttribute("cur_chapter");
- 
-  //current chapter (unformatted string)
-  chapter_r = eBook.getAttribute("chapter_r");
- 
   //add the current chapter to the hash
-  location.hash = series + "_" + chapter;
+  location.hash = HI6MA.series + "_" + HI6MA.chapter;
  
   //reset variables and #book
   totalPages = 1;
@@ -407,7 +252,7 @@ function loadBook() {
   eBook.innerHTML = "";
  
   //add a .png image
-  imgSrc = "i/" + series + "/" + chapter_r + "/" + pformat(page) + ".png";
+  imgSrc = "i/" + HI6MA.series + "/" + HI6MA.chapter_full + "/" + pformat(page) + ".png";
   var add = document.createElement("img");
   add.setAttribute("src", imgSrc);
   add.setAttribute("id", "pagePNG" + page);
@@ -415,7 +260,7 @@ function loadBook() {
   eBook.appendChild(add);
   
   //add a .jpg image
-  imgSrc = "i/" + series + "/" + chapter_r + "/" + pformat(page) + ".jpg";
+  imgSrc = "i/" + HI6MA.series + "/" + HI6MA.chapter_full + "/" + pformat(page) + ".jpg";
   "/" + pformat(page) + ".jpg";
   var add = document.createElement("img");
   add.setAttribute("src", imgSrc);
@@ -426,11 +271,6 @@ function loadBook() {
   //make the first image the current page
   document.querySelector("#pagePNG1").classList.add("currentPage");
   document.querySelector("#pageJPG1").classList.add("currentPage");
-  
-  //back button
-  document.getElementById("prevPage").onclick=function(){
-    prevPage();
-  }
   
   //load the next page
   loadImg(page);
@@ -458,7 +298,7 @@ function appendImg(page) {
   page++;
   
   //add a .png file
-  imgSrc = "i/" + series + "/" + chapter_r + "/" + pformat(page) + ".png";
+  imgSrc = "i/" + HI6MA.series + "/" + HI6MA.chapter_full + "/" + pformat(page) + ".png";
   var add = document.createElement("img");
   add.setAttribute("src", imgSrc);
   add.setAttribute("id", "pagePNG" + page);
@@ -466,7 +306,7 @@ function appendImg(page) {
   eBook.appendChild(add);
   
   //add a .jpg file
-  imgSrc = "i/" + series + "/" + chapter_r + "/" + pformat(page) + ".jpg";
+  imgSrc = "i/" + HI6MA.series + "/" + HI6MA.chapter_full + "/" + pformat(page) + ".jpg";
   var add = document.createElement("img");
   add.setAttribute("src", imgSrc);
   add.setAttribute("id", "pageJPG" + page);
@@ -536,6 +376,12 @@ function checkKey(e) {
     Title
 */
 function title(page, totalPages) {
-  document.title = "[" + page + "/" + totalPages + "] " + eHeadTitle.innerHTML + " | " + document.domain;
+  document.title = "[" + page + "/" + totalPages + "] " + HI6MA.series_full + " | " + document.domain;
 }
 
+/*
+    Truncate
+*/
+function truncate(str){
+  return str.replace(/\W/g, '');
+}

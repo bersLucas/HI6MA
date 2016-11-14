@@ -9,6 +9,7 @@ HI6MA was created to give users a larger reading area and remove dependency on j
   * The folder names must be valid folder names, and must be unique.
 * Inside of these folders, you will add the following files:
   * **cover.jpg** : The cover that will display on the main page.
+ * **A folder for each chapter** : It is inside this folder that individual pages will be added.
   * **data.txt** : Metadata for the series, which will appear as follows:
 ```
 [Series name]
@@ -20,12 +21,10 @@ HI6MA was created to give users a larger reading area and remove dependency on j
 
 ```
 Dead Dead Demon's
-&#12487;&#12487;&#12487;
+デッドデッドデーモンズ
 Asano Inio
 Translator's Name
 ```
-<sub>*(note how kanji and non-standard charecters must be in html charecter codes)*</sub>
-  * **A folder for each chapter** : It is inside this folder that individual pages will be added.
 
 <sub>*(images MUST be titled xxx.jpg/png, with three integers, starting with 001.jpg/png)*</sub>
 
@@ -38,4 +37,6 @@ The file **front.php** will be loaded to the bototm of the page. You can use thi
 ##Sass
 Colors are represented in sass variabless. Use **css/_variables.scss** to edit the background and accent colors. <a href="http://sass-lang.com/">You will need a sass compiler</a>.
 
-HI6MA uses <a href="http://hammerjs.github.io/">Hammer.js</a> for mobile swiping events.
+##Dependencies 
+<a href="http://hammerjs.github.io/">Hammer.js</a> - Mobile swiping events.
+<a href="https://github.com/vuejs/vue">Vue.js</a> - Interface library

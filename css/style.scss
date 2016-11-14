@@ -51,14 +51,14 @@ sidebar{
   h2{
     font-size: 15px; 
     line-height:17px; 
-    padding-top: 5px; 
+    padding-top: 4px; 
     font-weight: bold; 
   }
   h3{
     font-size: 13px; 
     line-height:15px; 
     padding-bottom: 5px; 
-    padding: 4px;
+    padding: 0 4px 4px 4px;
   }
   
   h4,h5{
@@ -71,11 +71,13 @@ sidebar{
     margin-top: -25px;
     z-index: 5;
     position: relative;
+    padding: 4px 4px 3px 4px;
   }
   
   h5{
     margin-top: 0px;
     background-color: darken($bg2, 5%);
+    padding: 3px 4px 4px 4px;
   }
   
   &.activeSidebar{

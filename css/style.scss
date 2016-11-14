@@ -4,10 +4,10 @@
 html,body{
   overflow: scroll;
   margin: 0px;
-  background: $color1;
+  background: $bg;
   max-width: 100%;
   overflow-x: hidden;
-  color: $bg;
+  color: $color1;
   font-family: 'Lato', sans-serif;
 }
 
@@ -36,17 +36,8 @@ sidebar{
   position: absolute;
   z-index: 50;
   top: 0;
+  display: table;
   
-  /*fill for the vertical scroll*/
-  &:after{
-    content: "";
-    height: calc(100vh - 20px);
-    width: 100%;
-    position: absolute;
-    display: block;
-    top: 100%;
-    pointer-events: none;
-  }
   h2,h3,h4,h5{
     margin: 0px;
     @include ellipsis;
@@ -97,7 +88,6 @@ sidebar{
     &:hover{
       cursor: pointer;
     }
-    #series{display:none;}
     #title{
       writing-mode: vertical-lr;
       -ms-writing-mode: tb-lr;
@@ -129,7 +119,8 @@ sidebar{
   
   #series{
     height: auto;
-    width: 100%;
+    width: 75%;
+    float: left;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -158,6 +149,12 @@ sidebar{
       }
     }
   }/*</#series>*/
+  
+  iframe{
+    float: left;
+    width: 25%;
+    height: 100%;
+  }
   
   #chapters{
     background-color: $bg;

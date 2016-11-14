@@ -60,6 +60,15 @@
       color: darken($bg, 30%);
       margin-left: 0px !important;
     }
+    
+    #series{
+      width: 100%;
+    }
+    
+    iframe{
+      width: 100%;
+    }
+    
     &.activeSidebar{
       width: 0px !important;
     }

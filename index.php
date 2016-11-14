@@ -1,6 +1,7 @@
 <!doctype>
 <?php include"load.php"; ?>
 <script>books = <?php echo getSeries(); ?>;</script>
+
 <head>
   <link href="css/reset.css" rel="stylesheet" type="text/css">
   <link href="css/style.css" rel="stylesheet" type="text/css">
@@ -11,6 +12,7 @@
 
 <body>
   <sidebar id="menu" v-bind:class="{activeSidebar: readingBook}">
+    
     <!--Header-->
     <header>
       <button v-if="openChapter" v-on:click="closeBook" id="back">
@@ -32,7 +34,7 @@
     </div>
     
     <!--Book list-->
-    <div id="series">
+    <div v-if="showSeries" id="series">
       <div class="book" v-for="(book, index) in booklist" v-bind:id="book.folder" v-on:click="openBook(index)">
         <h2 v-if="checkEmpty(book.name)">{{book.name}}</h2>
         <h3 v-if="checkEmpty(book.author)">{{book.author}}</h3>

@@ -14,6 +14,7 @@ var HI6MA = new Vue({
     //Display states
     openChapter: false,
     readingBook: false,
+    showSeries: true,
     
     //Text variables
     series_full: "",
@@ -36,7 +37,9 @@ var HI6MA = new Vue({
     
     //click on a book
     openBook: function(id){
+      window.scrollTo(0,0);
       this.openChapter = true;
+      this.showSeries = false;
       this.loadedChapters = this.booklist[id].chapters;
       this.series = this.booklist[id].folder;
       this.series_full = this.booklist[id].name;
@@ -45,6 +48,7 @@ var HI6MA = new Vue({
     //back button
     closeBook: function(){
       this.openChapter = false;
+      this.showSeries = true;
       this.loadedChapters = [""];
     },
     
@@ -65,7 +69,9 @@ var HI6MA = new Vue({
     //Return to menu
     returnToSeriesList: function(){
       this.readingBook = false;
-      location.hash = ""
+      this.showSeries = true;
+      location.hash = "";
+      eBook.innerHTML = "";
     },
     
     //remove non alpha-numberic characters
@@ -80,6 +86,11 @@ var HI6MA = new Vue({
       }else{
         return true;
       }
+    },
+    
+    previousPage: function(){
+      prevPage();
+      return;
     }
   }
 });

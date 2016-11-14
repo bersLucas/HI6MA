@@ -64,7 +64,7 @@ if (URL[1] != undefined && URL[1].length > 2) {
   
   
   //move to the first page
-  eBook.setAttribute("style", "margin-right:30px");
+  eBook.setAttribute("style", "transform: translateX(-30px)");
  
   //TRY to get the current series' name, series, and chapter
   for (var i=0; i<HI6MA.booklist.length; i++){
@@ -139,7 +139,7 @@ var nextPage = function (e) {
     eBook.removeEventListener("click", nextPage);
 
     //calculate the amount to move #book
-    leftM -= document.querySelector(".currentPage").offsetWidth;
+    leftM += document.querySelector(".currentPage").offsetWidth;
 
     //try for a .png file
     try {
@@ -167,7 +167,7 @@ var nextPage = function (e) {
     eBook.addEventListener("click", nextPage);
 
     //move #book as intended
-    eBook.setAttribute("style", "margin-right:" + leftM + "px");
+    eBook.setAttribute("style", "transform: translateX(" + leftM + "px)");
   }
   catch (e) {
     //No more pages to move forward to
@@ -185,59 +185,59 @@ function endOfChapter(){
   HI6MA.readingBook = false;
   HI6MA.openChapter = true;
   
-  eBook.setAttribute("style","margin-right:30px");
+  eBook.setAttribute("style","transform: translateX(-30px)");
 }
 
 /*
     Page back function
 */
 var prevPage = function () {
-    if (currentPage > 1) {
+  if (currentPage > 1) {
+    try {
+      //remove the click function.
+      eBook.removeEventListener("click", nextPage);
+
+      //calculate the amount to move #book
+      leftM -= document.querySelector(".currentPage").previousElementSibling.offsetWidth;
+
+      //try for a .png file
       try {
-        //remove the click function.
-        eBook.removeEventListener("click", nextPage);
-        
-        //calculate the amount to move #book
-        leftM += document.querySelector(".currentPage").previousElementSibling.offsetWidth;
-       
-        //try for a .png file
-        try {
-          document.querySelector("#pagePNG" + currentPage).classList.toggle("currentPage");
-        }
-        catch (e) {}
-        
-        //try for a .jpg file
-        try {
-          document.querySelector("#pageJPG" + currentPage).classList.toggle("currentPage");
-        }
-        catch (e) {}
-        
-        currentPage--;
-        
-        //try for .png file
-        try {
-          document.querySelector("#pagePNG" + currentPage).classList.toggle("currentPage");
-        }
-        catch (e) {}
-        
-        //try for .jpg file
-        try {
-          document.querySelector("#pageJPG" + currentPage).classList.toggle("currentPage");
-        }
-        catch (e) {}
-       
-        //add an event listener to the next page
-        eBook.addEventListener("click", nextPage);
-       
-        //move #book as intended
-        eBook.setAttribute("style", "margin-right:" + leftM + "px");
+        document.querySelector("#pagePNG" + currentPage).classList.toggle("currentPage");
       }
       catch (e) {}
-      
-      //Update the title
-      title(currentPage, totalPages);
+
+      //try for a .jpg file
+      try {
+        document.querySelector("#pageJPG" + currentPage).classList.toggle("currentPage");
+      }
+      catch (e) {}
+
+      currentPage--;
+
+      //try for .png file
+      try {
+        document.querySelector("#pagePNG" + currentPage).classList.toggle("currentPage");
+      }
+      catch (e) {}
+
+      //try for .jpg file
+      try {
+        document.querySelector("#pageJPG" + currentPage).classList.toggle("currentPage");
+      }
+      catch (e) {}
+
+      //add an event listener to the next page
+      eBook.addEventListener("click", nextPage);
+
+      //move #book as intended
+      eBook.setAttribute("style", "transform: translateX(" + leftM + "px)");
     }
+    catch (e) {}
+
+    //Update the title
+    title(currentPage, totalPages);
   }
+}
 
 /*
     Putting pages onto a #book

@@ -303,7 +303,7 @@ header{
     float: right;
     height: 100%;
     &:hover{
-      //cursor:pointer;
+      cursor: w-resize !important;
     }
   }
 }/*</#book>*/

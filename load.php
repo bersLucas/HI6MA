@@ -30,8 +30,12 @@ function getSeries(){
     }
   }
 
-  sort($mangas);
+  usort($mangas, "cmp");
   
   return json_encode($mangas);
+}
+
+function cmp($a, $b){
+    return strcmp($a->name, $b->name);
 }
 ?>

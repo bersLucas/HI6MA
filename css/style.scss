@@ -1,8 +1,9 @@
 @import 'variables';
 @import 'https://fonts.googleapis.com/css?family=Lato:400,700';
 
-//Hide elements before vue is done
-v-cloak{display:none;}
+[v-cloak]{
+  display:none;
+}
 
 html,body{
   overflow: scroll;

@@ -11,7 +11,7 @@
 </head>
 
 <body>
-  <sidebar id="menu" v-bind:class="{activeSidebar: readingBook}">
+  <sidebar id="menu" v-cloak v-bind:class="{activeSidebar: readingBook}">
     
     <!--Header-->
     <header>

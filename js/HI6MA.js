@@ -4,8 +4,8 @@
 */
 //page constraints
 var sheet = document.styleSheets[(document.styleSheets.length - 1)];
-sheet.insertRule("#book img{max-width:" + (window.innerWidth - 30) + "px;}", 0);
-sheet.insertRule("@media (orientation: portrait), (max-width: 750px){#book img{max-width:" + window.innerWidth + "px !important;}}", 0);
+sheet.insertRule("#book img{max-width:" + (window.innerWidth - 30) + "px;}", 1);
+sheet.insertRule("@media (orientation: portrait), (max-width: 750px){#book img{max-width:" + window.innerWidth + "px !important;}}", 1);
 var leftM = 30; //distance #book moves to the right
 var currentPage = 1; //current page a reader is at
 

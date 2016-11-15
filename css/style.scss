@@ -211,6 +211,22 @@ sidebar{
     -ms-user-select: none;
     user-select: none;
   }
+  
+  #prevPage{
+    width: 30px;
+    height: 30px;
+    margin: 5px;
+    background: #fff;
+    z-index: 500;
+    position: relative;
+    padding: 10px;
+    border-radius: 100%;
+    border: 2px solid $bg;
+    
+    svg{
+      transform: rotate(180deg);
+    }
+  }
 } /*</sidebar>*/
 
 header{
@@ -279,6 +295,7 @@ header{
   white-space: nowrap;
   right: 0px;
   width: 99999vw; /*geez*/
+  background-color: #fff;
   position: absolute;
   z-index: 5;
   transition: all 300ms ease-out;
@@ -290,49 +307,4 @@ header{
     }
   }
 }/*</#book>*/
-
-//Changes if the book is being read
-.viewing {
-  #prevPage, #book{
-    visibility: visible;
-    display: block;
-  }
-  footer{
-    visibility: hidden;
-    display: none;
-  }
-  #book:hover{
-    cursor: w-resize !important;
-  }
-}
-
-//Footer
-footer{
-  width: 100vw;
-  height: auto;
-  padding: 0px;
-  position: fixed;
-  bottom: 0px;
-  background: #fff;
-  color: #333;
-}
-
-#prevPage{
-  position: fixed;
-  background: #fff;
-  z-index: 200;
-  height: 50px;
-  width: 50px;
-  right: 4px;
-  border: 1px solid #dcdcdc;
-  border-radius: 100%;
-  top: 4px;
-  
-  svg{
-    transform: rotate(180deg);
-    height: 30px;
-    margin-top: 10px;
-    margin-left: 5px;
-  }
-}
 @import 'mobile';

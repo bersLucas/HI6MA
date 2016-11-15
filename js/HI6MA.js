@@ -60,10 +60,11 @@ if (URL[1] != undefined && URL[1].length > 2) {
   
   //activate the sidebar
   HI6MA.readingBook = true;
-  
+  HI6MA.openChapter = false;
+  HI6MA.showSeries = false;
   
   //move to the first page
-  eBook.setAttribute("style", "transform: translateX(-30px)");
+  eBook.setAttribute("style", "transform: translateX(30px)");
  
   //TRY to get the current series' name, series, and chapter
   for (var i=0; i<HI6MA.booklist.length; i++){
@@ -249,7 +250,8 @@ function loadBook() {
   totalPages = 1;
   page = 1;
   eBook.innerHTML = "";
- 
+  leftM = 30;
+  
   //add a .png image
   imgSrc = "i/" + HI6MA.series + "/" + HI6MA.chapter_full + "/" + pformat(page) + ".png";
   var add = document.createElement("img");

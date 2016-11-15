@@ -7,7 +7,6 @@ var sheet = document.styleSheets[(document.styleSheets.length - 1)];
 sheet.insertRule("#book img{max-width:" + (window.innerWidth - 30) + "px;}", 1);
 sheet.insertRule("@media (orientation: portrait), (max-width: 750px){#book img{max-width:" + window.innerWidth + "px !important;}}", 1);
 var leftM = 30; //distance #book moves to the right
-var currentPage = 1; //current page a reader is at
 
 /*
     Elements
@@ -82,7 +81,7 @@ if (URL[1] != undefined && URL[1].length > 2) {
   
   //reset counters
   leftM = 30;
-  currentPage = 1;
+  HI6MA.currentPage = 1;
   loadBook();
 }
 
@@ -143,24 +142,24 @@ var nextPage = function (e) {
 
     //try for a .png file
     try {
-      document.querySelector("#pagePNG" + currentPage).classList.toggle("currentPage");
+      document.querySelector("#pagePNG" + HI6MA.currentPage).classList.toggle("currentPage");
     }catch (e) {}
 
     //try for a .jpg file
     try {
-      document.querySelector("#pageJPG" + currentPage).classList.toggle("currentPage");
+      document.querySelector("#pageJPG" + HI6MA.currentPage).classList.toggle("currentPage");
     }catch (e) {}
 
-    currentPage++;
+    HI6MA.currentPage++;
 
     //try for .png file
     try {
-      document.querySelector("#pagePNG" + currentPage).classList.toggle("currentPage");
+      document.querySelector("#pagePNG" + HI6MA.currentPage).classList.toggle("currentPage");
     }catch (e) {}
 
     //try for .jpg file
     try {
-      document.querySelector("#pageJPG" + currentPage).classList.toggle("currentPage");
+      document.querySelector("#pageJPG" + HI6MA.currentPage).classList.toggle("currentPage");
     }catch (e) {}
 
     //add an event listener to the next page
@@ -175,7 +174,7 @@ var nextPage = function (e) {
   }
 
   //Update the title
-  title(currentPage, totalPages);
+  title(HI6MA.currentPage, totalPages);
 }
 
 /*
@@ -192,7 +191,7 @@ function endOfChapter(){
     Page back function
 */
 var prevPage = function () {
-  if (currentPage > 1) {
+  if (HI6MA.currentPage > 1) {
     try {
       //remove the click function.
       eBook.removeEventListener("click", nextPage);
@@ -202,27 +201,27 @@ var prevPage = function () {
 
       //try for a .png file
       try {
-        document.querySelector("#pagePNG" + currentPage).classList.toggle("currentPage");
+        document.querySelector("#pagePNG" + HI6MA.currentPage).classList.toggle("currentPage");
       }
       catch (e) {}
 
       //try for a .jpg file
       try {
-        document.querySelector("#pageJPG" + currentPage).classList.toggle("currentPage");
+        document.querySelector("#pageJPG" + HI6MA.currentPage).classList.toggle("currentPage");
       }
       catch (e) {}
 
-      currentPage--;
+      HI6MA.currentPage--;
 
       //try for .png file
       try {
-        document.querySelector("#pagePNG" + currentPage).classList.toggle("currentPage");
+        document.querySelector("#pagePNG" + HI6MA.currentPage).classList.toggle("currentPage");
       }
       catch (e) {}
 
       //try for .jpg file
       try {
-        document.querySelector("#pageJPG" + currentPage).classList.toggle("currentPage");
+        document.querySelector("#pageJPG" + HI6MA.currentPage).classList.toggle("currentPage");
       }
       catch (e) {}
 
@@ -235,7 +234,7 @@ var prevPage = function () {
     catch (e) {}
 
     //Update the title
-    title(currentPage, totalPages);
+    title(HI6MA.currentPage, totalPages);
   }
 }
 
@@ -261,7 +260,7 @@ function loadBook() {
   
   //add a .jpg image
   imgSrc = "i/" + HI6MA.series + "/" + HI6MA.chapter_full + "/" + pformat(page) + ".jpg";
-  "/" + pformat(page) + ".jpg";
+  "/" + pformat(HI6MA.currentPage) + ".jpg";
   var add = document.createElement("img");
   add.setAttribute("src", imgSrc);
   add.setAttribute("id", "pageJPG" + page);
@@ -314,13 +313,13 @@ function appendImg(page) {
   eBook.appendChild(add);
   
   //Don't load the next page if you click the title to remove the sidebar
-  if (document.querySelector(".activeSidebar") != null) {
+  if (HI6MA.readingBook) {
     
     //load the next page
     loadImg(page);
   }
   totalPages++;
-  title(currentPage, totalPages);
+  title(HI6MA.currentPage, totalPages);
   
   //make the pages clickable
   readingEvents();

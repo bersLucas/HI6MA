@@ -22,6 +22,7 @@ var HI6MA = new Vue({
     chapter: "",
     chapter_full: "",
     domain: domain,
+    currentPage: 1,
     
     //Chapter list
     loadedChapters: new Array(),
@@ -72,6 +73,8 @@ var HI6MA = new Vue({
       this.showSeries = true;
       location.hash = "";
       eBook.innerHTML = "";
+      eBook.setAttribute("style","transform: translateX(30px)");
+      this.currentPage = 1;
     },
     
     //remove non alpha-numberic characters

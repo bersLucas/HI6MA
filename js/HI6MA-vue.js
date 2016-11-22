@@ -16,6 +16,9 @@ var HI6MA = new Vue({
     readingBook: false,
     showSeries: true,
     
+    //Show iFrame
+    hideiFrame: true,
+    
     //Text variables
     series_full: "",
     series: "",

@@ -5,10 +5,14 @@ $bezier: cubic-bezier(1,0,0,1);
 $headerHeight: 40px;
 
 //colors
-$bg: #d69d66;     //Main color
-$bg2: #866188;    //Accent
-$color1: #fff;   //Background (white)
-$color2: #fc5f94; //Text color
+$bg:          #eee; //Main color
+$accent:      #333; //Accent (default)
+$headerBG:    #676767; //Background (white)
+$headerColor: #eee; //Title Color
+$titleColor:  #333; //Text color
+
+//borders
+$border-radius: 0px;
 
 //keyframes
 @keyframes backArrow{

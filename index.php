@@ -34,13 +34,13 @@
     </div>
     
     <!--Book list-->
-    <div v-if="showSeries" id="series">
+    <div v-if="showSeries" id="series" v-bind:class="{hideiFrame: hideiFrame}">
       <div class="book" v-for="(book, index) in booklist" v-bind:id="book.folder" v-on:click="openBook(index)">
         <h2 v-if="checkEmpty(book.name)">{{book.name}}</h2>
         <h3 v-if="checkEmpty(book.author)">{{book.author}}</h3>
         <img v-bind:src="bookCover(index)"/>
-        <h4 v-if="checkEmpty(book.kanji)">{{book.kanji}}</h4>
-        <h5 v-if="checkEmpty(book.TL)">{{book.TL}}</h5>
+        <h4 v-bind:style="{background: book.BG}" v-if="checkEmpty(book.kanji)">{{book.kanji}}</h4>
+        <h5 v-bind:style="{background: book.BBG}" v-if="checkEmpty(book.TL)">{{book.TL}}</h5>
       </div>
     </div>
     

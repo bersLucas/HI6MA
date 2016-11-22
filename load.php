@@ -17,8 +17,19 @@ function getSeries(){
       $mangas[$counter]->name = $data[0];
       $mangas[$counter]->kanji = $data[1];
       $mangas[$counter]->author = $data[2];
-      $mangas[$counter]->TL = $data[3];
-
+      
+      if(isset($data[3])){
+        $mangas[$counter]->TL = $data[3];
+      }
+      
+      if(isset($data[4])){
+        $mangas[$counter]->BG = $data[4];
+      }
+        
+      if(isset($data[5])){
+        $mangas[$counter]->BBG = $data[5];
+      }
+      
       $od2 = @opendir("i/".$f);
       while ($g= @readdir($od2)) {
         if (is_dir("i/" . $f . "/" . $g) && $g != "." && $g != "..") {

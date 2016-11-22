@@ -6,7 +6,7 @@
 var sheet = document.styleSheets[(document.styleSheets.length - 1)];
 sheet.insertRule("#book img{max-width:" + (window.innerWidth - 30) + "px;}", 1);
 sheet.insertRule("@media (orientation: portrait), (max-width: 750px){#book img{max-width:" + window.innerWidth + "px !important;}}", 1);
-var leftM = 30; //distance #book moves to the right
+var leftM = 0; //distance #book moves to the right
 
 /*
     Elements
@@ -64,7 +64,7 @@ if (URL[1] != undefined && URL[1].length > 2) {
   HI6MA.showSeries = false;
   
   //move to the first page
-  eBook.setAttribute("style", "transform: translateX(30px)");
+  eBook.setAttribute("style", "transform: translateX(0px)");
  
   //TRY to get the current series' name, series, and chapter
   for (var i=0; i<HI6MA.booklist.length; i++){
@@ -81,7 +81,7 @@ if (URL[1] != undefined && URL[1].length > 2) {
   }
   
   //reset counters
-  leftM = 30;
+  leftM = 0;
   HI6MA.currentPage = 1;
   loadBook();
 }
@@ -250,7 +250,7 @@ function loadBook() {
   totalPages = 1;
   page = 1;
   eBook.innerHTML = "";
-  leftM = 30;
+  leftM = 0;
   
   //add a .png image
   imgSrc = "i/" + HI6MA.series + "/" + HI6MA.chapter_full + "/" + pformat(page) + ".png";

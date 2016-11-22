@@ -4,9 +4,10 @@
   }
   
   .book{
-    width: calc(100% - 23px) !important;
+    width: calc(100% - 10px) !important;
     height: 150px;
     position: relative;
+    margin: 3px !important;
     img{
       margin-right: 10px;
       height: inherit !important;
@@ -19,7 +20,7 @@
       float: right;
       display: block;
       clear: both;
-      max-width: calc(100% - 111px);
+      max-width: calc(100% - 119px);
     }
     h4,
     h5{
@@ -69,6 +70,7 @@
     
     #series{
       width: 100%;
+      padding-top: 3px;
     }
     
     iframe{
@@ -81,7 +83,7 @@
   }
   
   #book{
-    right: -30px !important;
+    margin-right: 0px !important;
     img{
       margin-top: $headerHeight / 2 !important;
       width: 100vw !important;

@@ -76,8 +76,9 @@ var HI6MA = new Vue({
       this.showSeries = true;
       location.hash = "";
       eBook.innerHTML = "";
-      eBook.setAttribute("style","transform: translateX(30px)");
+      eBook.setAttribute("style","transform: translateX(0px)");
       this.currentPage = 1;
+      document.title = domain;
     },
     
     //remove non alpha-numberic characters

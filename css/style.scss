@@ -59,6 +59,7 @@ sidebar{
     line-height:17px; 
     padding-top: 4px; 
     font-weight: bold; 
+    border-radius: $border-radius $border-radius 0 0;
   }
   h3{
     font-size: 13px; 
@@ -146,6 +147,7 @@ sidebar{
       width: 193px;
       display: inline-block;
       transition: all 250ms ease-out;
+      border-radius: $border-radius + 1;
       img{
         height: 275px;
         width: auto;

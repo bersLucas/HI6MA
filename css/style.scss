@@ -11,7 +11,7 @@ html,body{
   background: $bg;
   max-width: 100%;
   overflow-x: hidden;
-  color: $color1;
+  color: $headerBG;
   font-family: 'Lato', sans-serif;
 }
 
@@ -42,6 +42,7 @@ sidebar{
   z-index: 50;
   top: 0;
   display: table;
+  background: $bg;
   
   h2,h3,h4,h5{
     margin: 0px;
@@ -50,7 +51,7 @@ sidebar{
     color: $bg;
     padding: 0px 5px;
     background-color: #fff;
-    color: $color2;
+    color: $titleColor;
   }
 
   h2{
@@ -69,7 +70,7 @@ sidebar{
   h4,h5{
     font-size: 11px;
     line-height: 15px;
-    background-color: $bg2;
+    background-color: $accent;
     color: #fff;
     padding: 5px;
     font-family: 'meiryo', sans-serif;
@@ -81,7 +82,7 @@ sidebar{
   
   h5{
     margin-top: 0px;
-    background-color: darken($bg2, 5%);
+    background-color: darken($accent, 5%);
     padding: 3px 4px 4px 4px;
   }
   
@@ -101,7 +102,8 @@ sidebar{
       -webkit-writing-mode: vertical-lr;
       text-align: center;
       height: 100%;
-      color: $color1;
+      background: $bg;
+      color: $bg;
       letter-spacing: 4px;
       display: block !important;
       margin-left: 6px;
@@ -111,7 +113,7 @@ sidebar{
       @include ellipsis;
       width: 20px;
       padding-left: 5px;
-      background-color: $bg;
+      background-color: $headerBG;
     }
     header{
       animation: headerClose 450ms $bezier;
@@ -136,7 +138,6 @@ sidebar{
     padding-bottom: 20px;
     top: 0px;
     position: relative;
-    background: $bg;
     .book{
       transition: opacity 250ms;
       opacity: 1;
@@ -164,7 +165,6 @@ sidebar{
   }
   
   #chapters{
-    background-color: $bg;
     float: left;
     z-index: 9;
     margin-top: 0px;
@@ -181,7 +181,7 @@ sidebar{
       padding: 0px;
       width: 100%;
       li{
-        color: #fff;
+        color: $titleColor;
         width: calc(98% - 2px);
         display: block;
         font-size: 25;
@@ -192,7 +192,7 @@ sidebar{
         &:hover{
           cursor:pointer;
           color:$bg;
-          background: $color1;
+          background: $headerBG;
         }
       }
     }/*</#chapters ul>*/
@@ -221,8 +221,9 @@ sidebar{
     position: relative;
     padding: 10px;
     border-radius: 100%;
-    border: 2px solid $bg;
-    
+    border: 4px solid $headerBG;
+    right: 0;
+    position: fixed;
     svg{
       transform: rotate(180deg);
     }
@@ -236,7 +237,7 @@ header{
   top: 0;
   color: $bg;
   min-height: 40px;
-  background-color: $color1;
+  background-color: $headerBG;
   transition: all 450ms cubic-bezier(1, 0, 0, 1);
   margin-top: -6px;
   padding: 10px 5px 0px 5px;
@@ -248,7 +249,7 @@ header{
     height: $headerHeight;
     width: $headerHeight;
     display: block;
-    background-color: $color1;
+    background-color: $headerBG;
     padding-right: 0px;
     transition: all 150ms;
     text-align: center;
@@ -273,7 +274,7 @@ header{
   }/*</#back>*/
   #headTitle{
     width: 100%;
-    color: $bg2;
+    color: $headerColor;
     font-size: $headerHeight / 1.5;
     margin-top: 5px;
     width: calc(100% - 70px);

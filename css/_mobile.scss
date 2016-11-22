@@ -19,17 +19,21 @@
       float: right;
       display: block;
       clear: both;
-      max-width: calc(100% - 120px);
+      max-width: calc(100% - 111px);
+    }
+    h4,
+    h5{
+      text-shadow: none;
     }
     h4{
       position: absolute;
       bottom: 0;
       right: 0;
-      max-width: calc(100% - 10px);
+      max-width: calc(100% - 8px);
       overflow: hidden;
     }
     h5{
-      background: #fff;
+      background: #fff !important;
       color: #909090;
       padding: 4px;
       line-height: 100%;

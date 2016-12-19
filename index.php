@@ -60,7 +60,7 @@
   <div id="book"></div>
 </body>
 
-<script src="js/vue.min.js"></script>
-<script src="js/HI6MA-vue.js"></script>
-<script src="js/HI6MA.js"></script>
-<script src="js/hammer.js"></script>
+<script src="js/src/vue.min.js"></script>
+<script src="js/HI6MA-vue-min.js"></script>
+<script src="js/HI6MA-min.js"></script>
+<script src="js/src/hammer.js"></script>

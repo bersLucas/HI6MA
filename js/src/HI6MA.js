@@ -385,3 +385,32 @@ function title(page, totalPages) {
 function truncate(str){
   return str.replace(/\W/g, '');
 }
+
+/*
+    Fontload
+*/
+window.onload = function () {
+  var loadCheck = 0;
+  var lato = new FontFace("lato", ["url(https://fonts.gstatic.com/s/lato/v11/MDadn8DQ_3oT6kvnUq_2r_esZW2xOQ-xsNqO47m55DA.woff2)","url(https://fonts.gstatic.com/s/lato/v11/MgNNr5y1C_tIEuLEmicLmwLUuEpTyoUstqEm5AMlJo4.woff2)"], {});
+  var latoBold = new FontFace("latoBold", "url(https://fonts.gstatic.com/s/lato/v11/MgNNr5y1C_tIEuLEmicLmwLUuEpTyoUstqEm5AMlJo4.woff2)", {weight: "bold"});
+  
+  lato.load().then(function (loadedFace) {
+    loadCheck++;
+    if (loadCheck === 2){
+      applyFonts();
+    }
+  });  
+  latoBold.load().then(function (loadedFace) {
+    loadCheck++;
+    if (loadCheck === 2){
+      applyFonts();
+    }
+  });
+  
+  var applyFonts = function(){
+    document.fonts.add(lato);
+    document.fonts.add(latoBold);
+    document.body.className += " fontLoaded"
+  }
+};
+

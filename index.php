@@ -45,7 +45,7 @@
     </div>
     
     
-    <iframe v-show="showSeries" src="books"></iframe>
+    <iframe v-if="!hideiFrame" v-show="showSeries" src="books"></iframe>
     
     <!--Previous page button-->
     <div id="prevPage" v-on:click="previousPage()" v-if="readingBook"><svg xmlns="http://www.w3.org/2000/svg" fill="#333" viewBox="0 0 1000 1000"><path d="M794.6 120.8L684 10 196 498l485.4 492 122.8-116.4L413.5 496l381-375.2z"/></svg></div>

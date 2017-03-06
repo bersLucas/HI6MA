@@ -27,9 +27,9 @@
     <!--Chapter list-->
     <div id="chapters" v-bind:class="{openChapter: openChapter, slideOut: readingBook}">
       <ul>
-        <li v-for="(chapter, index) in loadedChapters" v-bind:id="truncateChapter(index)" v-on:click="loadChapter(index)">
+        <a v-bind:href="'#' + series + '_'+ truncateChapter(index)" v-for="(chapter, index) in loadedChapters" v-bind:id="truncateChapter(index)" v-on:click="loadChapter(index)">
           {{chapter}}
-        </li>
+        </a>
       </ul>
     </div>
     

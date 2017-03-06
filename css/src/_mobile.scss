@@ -6,13 +6,23 @@
   .book{
     width: calc(100% - 10px) !important;
     height: 150px;
-    position: relative;
     margin: 3px !important;
+    .book-info,
+    .book-info-bottom{
+      width: calc(100% - 113px) !important;
+      right: 0;
+    }
+    .book-info-bottom{
+      bottom: 0;
+      
+      
+    }
     img{
       margin-right: 10px;
       height: inherit !important;
       margin-bottom: 0px !important;
       position: absolute;
+      margin-top: 0px !important;
     }
     h2,h3,h4,h5{
       font-size: 110%;
@@ -20,18 +30,19 @@
       float: right;
       display: block;
       clear: both;
-      max-width: calc(100% - 119px);
+      width: calc(100% - 10px);
+      text-align: right;
+      @include ellipsis;
+      padding-left: 14px;
     }
     h4,
     h5{
       text-shadow: none;
     }
     h4{
-      position: absolute;
+      position: relative;
       bottom: 0;
       right: 0;
-      max-width: calc(100% - 8px);
-      overflow: hidden;
     }
     h5{
       background: #fff !important;
@@ -70,7 +81,7 @@
     
     #series{
       width: 100%;
-      padding-top: 3px;
+      padding: 3px 5px 0 5px;
     }
     
     iframe{

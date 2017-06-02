@@ -3,7 +3,8 @@
 A W I D E comic reader. Successor to <a href="/bersLucas/MSlide">MSlide</a>.
 HI6MA was created to give users a larger reading area and remove dependency on jQuery.
 
-##Set up
+### Set up
+
 * Clone [the master branch](https://github.com/bersLucas/HI6MA/archive/master.zip) onto any web server.
 * In the **/i/** folder, create folders for each series.
   * <sub>(The series' folder names must contain no spaces,and must be unique.)</sub>
@@ -14,8 +15,8 @@ HI6MA was created to give users a larger reading area and remove dependency on j
   * **data.txt** : Metadata for the series, which will appear as follows:
 ```
 [Series name]
-[Author]
 [Alt. Title (kanji)]
+[Author]
 [Translator or tag info]
 [Background color #1]
 [Background color #2]
@@ -32,13 +33,13 @@ Translator's Name
 ```
 <sub>*(Every field is optional and will be used for metadata only. Series will be sorted by series' name)*</sub>
 
-##Example file structure:
+### Example file structure:
 <img src="https://cloud.githubusercontent.com/assets/3892772/19536607/aba5b538-961a-11e6-901b-a7ba8085b9af.png"/>
 
-##Sass
+### Sass
 Colors are represented in sass variabless. Use **css/_variables.scss** to edit the background and accent colors. <a href="http://sass-lang.com/">You will need a sass compiler</a>.
 
-##Dependencies 
+### Dependencies 
 <a href="http://hammerjs.github.io/">Hammer.js</a> - Mobile swiping events.
 
 <a href="https://github.com/vuejs/vue">Vue.js</a> - Interface library

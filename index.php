@@ -7,14 +7,14 @@
   <link href="css/style.css" rel="stylesheet" type="text/css">
   <meta name="viewport" content="minimal-ui, width=device-width, user-scalable=no"/>
   <meta charset="utf-8">
-  <title>(ﾉ^ヮ^)ﾉ*</title>
+  <title>୧| ” •̀ ل͜ •́ ” |୨</title>
 </head>
 
 <body>
   <sidebar id="menu" v-cloak v-bind:class="{activeSidebar: readingBook}">
     
     <!--Header-->
-    <header>
+    <header v-if="openChapter">
       <button v-if="openChapter" v-on:click="closeBook" id="back">
         <svg xmlns="http://www.w3.org/2000/svg" fill="#fff" viewBox="0 0 1000 1000"><path d="M794.6 120.8L684 10 196 498l485.4 492 122.8-116.4L413.5 496l381-375.2z"/></svg>
       </button>
@@ -61,7 +61,8 @@
   </sidebar>
   
   <!--Pages-->
-  <div id="book"></div>
+  <div id="book" v-bind:class="{readingBook: readingBook}"></div>
+    
 </body>
 
 <script src="js/src/vue.min.js"></script>

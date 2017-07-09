@@ -30,7 +30,7 @@ html.viewing{
 .chapList{
   display:none !important
 }
-
+ 
 .hideSeries{
   height: 0px;
 }
@@ -45,8 +45,8 @@ sidebar{
   z-index: 50;
   top: 0;
   display: table;
-  background: $bg;
-  
+  background: #1a1a1a url("../bg.jpg") repeat-x scroll 0% 0% / auto 800px;
+
   h2,h3,h4,h5{
     margin: 0px;
     overflow: hidden;
@@ -92,7 +92,7 @@ sidebar{
   }
   
   &.activeSidebar{
-    width: 30px;
+    width: 25px;
     height: 100%;
     right: 0px;
     text-align: center;
@@ -146,9 +146,9 @@ sidebar{
     .book{
       transition: opacity 250ms;
       opacity: 1;
-      margin: 5px 4px;
+      margin: 20px 35px;
       background-color: #fff;
-      width: 193px;
+      width: 200px;
       display: inline-block;
       transition: all 250ms ease-out;
       border-radius: $border-radius + 1;
@@ -162,19 +162,21 @@ sidebar{
         bottom: 0;
       }
       img{
-        height: 275px;
+        height: 280px;
         width: auto;
-        max-width: 193px;
+        width: 200px;
         margin: 40px 0;
       }
       &:hover{
         cursor: pointer;
-        opacity: 0.9;
+        transform: scale(1.05,1.05);
+        box-shadow: 0 7px 8px rgba(0,0,0,.5);
       }
     }
     &.hideiFrame{
       width: 100%;
-      max-width: 1200px;
+      max-width: 1600px;
+      padding-top: 100px;
       left: 0;
       right: 0;
       margin: auto;
@@ -204,6 +206,7 @@ sidebar{
       margin: 0px;
       padding: 0px;
       width: 100%;
+      background: darken($headerBG, 10%);
       a{
         color: $titleColor;
         width: calc(98% - 2px);

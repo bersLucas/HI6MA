@@ -214,18 +214,19 @@ sidebar {
 				line-height: inherit;
 				color: white;
 				margin: auto;
+				overflow: visible;
 			}
 			h2 {
-				font-size: 4vmax;
+				font-size: 3.5vmax;
 			}
 			h3 {
 				font-weight: bold;
-				font-size: 2vmax;
+				font-size: 1.75vmax;
 				margin: 5px 0 20px;
 			}
 			h4,
 			h5 {
-				font-size: 1.5vmax;
+				font-size: 1.45vmax;
 				b {
 					font-weight: bold;
 				}

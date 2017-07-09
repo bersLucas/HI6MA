@@ -169,8 +169,7 @@ sidebar{
       }
       &:hover{
         cursor: pointer;
-        transform: scale(1.05,1.05);
-        box-shadow: 0 7px 8px rgba(0,0,0,.5);
+        opacity: 0.8;
       }
     }
     &.hideiFrame{

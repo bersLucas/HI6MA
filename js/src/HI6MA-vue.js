@@ -29,6 +29,9 @@ var HI6MA = new Vue({
     
     //Chapter list
     loadedChapters: new Array(),
+      
+    //Current book object
+    book: "",
     
   },
   methods: {
@@ -40,8 +43,9 @@ var HI6MA = new Vue({
     },
     
     //click on a book
-    openBook: function(id){
+    openBook: function(id, book){
       window.scrollTo(0,0);
+      this.book = book;
       this.openChapter = true;
       this.showSeries = false;
       this.loadedChapters = this.booklist[id].chapters;

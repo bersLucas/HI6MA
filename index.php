@@ -19,23 +19,31 @@
         <svg xmlns="http://www.w3.org/2000/svg" fill="#fff" viewBox="0 0 1000 1000"><path d="M794.6 120.8L684 10 196 498l485.4 492 122.8-116.4L413.5 496l381-375.2z"/></svg>
       </button>
       <div id="headTitle">
-        <span v-if="openChapter">{{series_full}}</span>
-        <span v-else>{{domain}}</span>
+        <span>{{domain}}</span>
       </div>
     </header>
     
     <!--Chapter list-->
     <div id="chapters" v-bind:class="{openChapter: openChapter, slideOut: readingBook}">
+      <img class="cover_image" v-bind:src="'i/' + series + '/cover.jpg'"/>
+      <div class='book_information'>
+        <h2>{{book.name}}</h2>
+        <h3>{{book.kanji}}</h3>
+        <h4>Written by: <b>{{book.author}}</b></h4>
+        <h5>Translated by: <b>{{book.TL}}</b></h5>	
+      </div>
       <ul>
-        <a v-bind:href="'#' + series + '_'+ truncateChapter(index)" v-for="(chapter, index) in loadedChapters" v-bind:id="truncateChapter(index)" v-on:click="loadChapter(index)">
-          {{chapter}}
-        </a>
-      </ul>
+        <li>
+					<a v-bind:href="'#' + series + '_'+ truncateChapter(index)" v-for="(chapter, index) in loadedChapters" v-bind:id="truncateChapter(index)" v-on:click="loadChapter(index)">
+          	{{chapter}}
+        	</a>
+				</li>
+      </ul> 
     </div>
     
     <!--Book list-->
     <div v-if="showSeries" id="series" v-bind:class="{hideiFrame: hideiFrame}">
-      <div class="book" v-for="(book, index) in booklist" v-bind:id="book.folder" v-on:click="openBook(index)">
+      <div class="book" v-for="(book, index) in booklist" v-bind:id="book.folder" v-on:click="openBook(index, book)">
         <div class="book-info">
           <h2 v-if="checkEmpty(book.name)">{{book.name}}</h2>
           <h3 v-if="checkEmpty(book.author)">{{book.author}}</h3>

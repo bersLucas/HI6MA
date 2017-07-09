@@ -1,9 +1,4 @@
-function readingEvents(){function e(){swipeTime=!0}eBook.addEventListener("click",nextPage)
-var t=new Hammer(eBook)
-swipeTime=!0,swipeInt=2e3,t.on("swipe",function(t){if(swipeTime){if(4==t.direction){nextPage(),swipeTime=!1,clearInterval(r)
-var r=setInterval(e,swipeInt)}if(2==t.direction){prevPage(),swipeTime=!1,clearInterval(r)
-var r=setInterval(e,swipeInt)}}})
-setInterval(e,swipeInt)}function endOfChapter(){HI6MA.readingBook=!1,HI6MA.openChapter=!0,eBook.setAttribute("style","transform: translateX(-30px)")}function loadBook(){location.hash=HI6MA.series+"_"+HI6MA.chapter,totalPages=1,page=1,eBook.innerHTML="",leftM=0,imgSrc="i/"+HI6MA.series+"/"+HI6MA.chapter_full+"/"+pformat(page)+".png"
+function readingEvents(){eBook.addEventListener("click",nextPage)}function endOfChapter(){HI6MA.readingBook=!1,HI6MA.openChapter=!0,eBook.setAttribute("style","transform: translateX(-30px)")}function loadBook(){location.hash=HI6MA.series+"_"+HI6MA.chapter,totalPages=1,page=1,eBook.innerHTML="",leftM=0,imgSrc="i/"+HI6MA.series+"/"+HI6MA.chapter_full+"/"+pformat(page)+".png"
 var e=document.createElement("img")
 e.setAttribute("src",imgSrc),e.setAttribute("id","pagePNG"+page),e.setAttribute("onerror","removeBroken(this)"),eBook.appendChild(e),imgSrc="i/"+HI6MA.series+"/"+HI6MA.chapter_full+"/"+pformat(page)+".jpg","/"+pformat(HI6MA.currentPage)+".jpg"
 var e=document.createElement("img")
@@ -32,6 +27,6 @@ try{document.querySelector("#pagePNG"+HI6MA.currentPage).classList.toggle("curre
 try{document.querySelector("#pagePNG"+HI6MA.currentPage).classList.toggle("currentPage")}catch(e){}try{document.querySelector("#pageJPG"+HI6MA.currentPage).classList.toggle("currentPage")}catch(e){}eBook.addEventListener("click",nextPage),eBook.setAttribute("style","transform: translateX("+leftM+"px)")}catch(e){endOfChapter()}title(HI6MA.currentPage,totalPages)},prevPage=function(){if(HI6MA.currentPage>1){try{eBook.removeEventListener("click",nextPage),leftM-=document.querySelector(".currentPage").previousElementSibling.offsetWidth
 try{document.querySelector("#pagePNG"+HI6MA.currentPage).classList.toggle("currentPage")}catch(e){}try{document.querySelector("#pageJPG"+HI6MA.currentPage).classList.toggle("currentPage")}catch(e){}HI6MA.currentPage--
 try{document.querySelector("#pagePNG"+HI6MA.currentPage).classList.toggle("currentPage")}catch(e){}try{document.querySelector("#pageJPG"+HI6MA.currentPage).classList.toggle("currentPage")}catch(e){}eBook.addEventListener("click",nextPage),eBook.setAttribute("style","transform: translateX("+leftM+"px)")}catch(e){}title(HI6MA.currentPage,totalPages)}}
-document.onkeydown=checkKey,window.onload=function(){var e=0,t=new FontFace("lato",["url(https://fonts.gstatic.com/s/lato/v11/MDadn8DQ_3oT6kvnUq_2r_esZW2xOQ-xsNqO47m55DA.woff2)","url(https://fonts.gstatic.com/s/lato/v11/MgNNr5y1C_tIEuLEmicLmwLUuEpTyoUstqEm5AMlJo4.woff2)"],{}),r=new FontFace("latoBold","url(https://fonts.gstatic.com/s/lato/v11/MgNNr5y1C_tIEuLEmicLmwLUuEpTyoUstqEm5AMlJo4.woff2)",{weight:"bold"})
-t.load().then(function(t){e++,2===e&&o()}),r.load().then(function(t){e++,2===e&&o()})
-var o=function(){document.fonts.add(t),document.fonts.add(r),document.body.className+=" fontLoaded"}}
+document.onkeydown=checkKey,window.onload=function(){var e=0,t=new FontFace("lato",["url(https://fonts.gstatic.com/s/lato/v11/MDadn8DQ_3oT6kvnUq_2r_esZW2xOQ-xsNqO47m55DA.woff2)","url(https://fonts.gstatic.com/s/lato/v11/MgNNr5y1C_tIEuLEmicLmwLUuEpTyoUstqEm5AMlJo4.woff2)"],{}),o=new FontFace("latoBold","url(https://fonts.gstatic.com/s/lato/v11/MgNNr5y1C_tIEuLEmicLmwLUuEpTyoUstqEm5AMlJo4.woff2)",{weight:"bold"})
+t.load().then(function(t){e++,2===e&&r()}),o.load().then(function(t){e++,2===e&&r()})
+var r=function(){document.fonts.add(t),document.fonts.add(o),document.body.className+=" fontLoaded"}}

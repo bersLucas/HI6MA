@@ -67,4 +67,3 @@
 
 <script src="js/src/vue.min.js"></script>
 <script src="js/HI6MA-min.js"></script>
-<script src="js/src/hammer.js"></script>

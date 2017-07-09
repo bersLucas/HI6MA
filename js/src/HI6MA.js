@@ -91,40 +91,6 @@ if (URL[1] != undefined && URL[1].length > 2) {
 function readingEvents() {
   //click
   eBook.addEventListener("click", nextPage);
-  
-  //swipe
-  var hammertime = new Hammer(eBook);
-  swipeTime = true; //Ability to swipe
-  swipeInt = 2000; //Interval between swipes
-  /*! Hammer.JS - v2.0.8 - 2016-04-23
-   * http://hammerjs.github.io/
-   *
-   * Copyright (c) 2016 Jorik Tangelder;
-   * Licensed under the MIT license */
-  hammertime.on('swipe', function (ev) {
-    if (swipeTime) {
-      //Swipe LtR
-      if (ev.direction == 4) {
-        nextPage();
-        swipeTime = false;
-        clearInterval(setSwipeTimeInterval);
-        var setSwipeTimeInterval = setInterval(setSwipeTime, swipeInt);
-      }
-      //Swipe RtL
-      if (ev.direction == 2) {
-        prevPage();
-        swipeTime = false;
-        clearInterval(setSwipeTimeInterval);
-        var setSwipeTimeInterval = setInterval(setSwipeTime, swipeInt);
-      }
-    }
-  });
-  
-  //Timer Functions
-  var setSwipeTimeInterval = setInterval(setSwipeTime, swipeInt);
-  function setSwipeTime() {
-    swipeTime = true;
-  }
 }
 
 /*

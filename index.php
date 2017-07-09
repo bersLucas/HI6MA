@@ -27,15 +27,17 @@
     <div id="chapters" v-bind:class="{openChapter: openChapter, slideOut: readingBook}">
       <img class="cover_image" v-bind:src="'i/' + series + '/cover.jpg'"/>
       <div class='book_information'>
-        <h2>{{book.name}}</h2>
-        <h3>{{book.kanji}}</h3>
-        <h4>Written by: <b>{{book.author}}</b></h4>
-        <h5>Translated by: <b>{{book.TL}}</b></h5>	
+        <h2 v-if="book.name">{{book.name}}</h2>
+        <h3 v-if="book.kanji">{{book.kanji}}</h3>
+        <h4 v-if="book.author">Written by: <b>{{book.author}}</b></h4>
+        <h5 v-if="book.TL">Translated by: <b>{{book.TL}}</b></h5>	
       </div>
       <ul>
-        <li>
-					<a v-bind:href="'#' + series + '_'+ truncateChapter(index)" v-for="(chapter, index) in loadedChapters" v-bind:id="truncateChapter(index)" v-on:click="loadChapter(index)">
-          	{{chapter}}
+        <li v-for="(chapter, index) in loadedChapters">
+				  <div class="side_border" v-if="index % 2 == 0" v-bind:style="{background: book.BG}"></div>
+					<div class="side_border" v-if="index % 2 != 0" v-bind:style="{background: book.BBG}"></div>
+					<a v-bind:href="'#' + series + '_'+ truncateChapter(index)"  v-bind:id="truncateChapter(index)" v-on:click="loadChapter(index)">
+					  {{chapter}}
         	</a>
 				</li>
       </ul> 

@@ -1,4 +1,4 @@
-# <a href="http://m3ow.moe">Live demo</a>
+# <a href="http://m3ow.moe/manga">Live demo</a>
 
 A W I D E comic reader. Successor to <a href="/bersLucas/MSlide">MSlide</a>.
 HI6MA was created to give users a larger reading area and remove dependency on jQuery.

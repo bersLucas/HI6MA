@@ -4,7 +4,7 @@ div(v-if="showSeries" id="series" v-bind:class="{hideiFrame: hideiFrame}")
             h2(v-if="checkEmpty(book.name)") {{book.name}}
             h3(v-if="checkEmpty(book.author)") {{book.author}}
 
-        img(v-bind:src="bookCover(index)")
+        img(v-bind:src="bookCover(book)")
         div.book-info-bottom
             h4(v-bind:style="{background: book.BG}" v-if="checkEmpty(book.kanji)") {{book.kanji}}
             h5(v-bind:style="{background: book.BBG}" v-if="checkEmpty(book.TL)") {{book.TL}}

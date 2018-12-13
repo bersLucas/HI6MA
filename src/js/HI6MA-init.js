@@ -36,8 +36,8 @@ var HI6MA = new Vue({
     },
     methods: {
         //Fetch covers
-        bookCover: function(id) {
-            var cover = this.booklist[id].folder;
+        bookCover: function(book) {
+            var cover = book.folder;
             cover += "/cover.jpg";
             return cover;
         },

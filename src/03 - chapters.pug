@@ -1,5 +1,5 @@
 div#chapters(v-bind:class="{openChapter: openChapter, slideOut: readingBook}")
-    img(class="cover_image" v-bind:src="'i/' + series + '/cover.jpg'")
+    img(class="cover_image" v-bind:src="bookCover(book)")
     div.book_information
         h2(v-if="book.name") {{book.name}}
         h3(v-if="book.kanji") {{book.kanji}}

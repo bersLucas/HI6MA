@@ -35,7 +35,7 @@ html.viewing {
 	height: 0px;
 }
 
-div {
+div#menu {
 	width: 100%;
 	height: 100%;
 	min-height: 100vh;
@@ -45,7 +45,7 @@ div {
 	z-index: 50;
 	top: 0;
 	display: table;
-	background: #1a1a1a url("../bg.jpg") repeat-x scroll 0% 0% / auto 800px;
+	background-color: #333;
 	h2,
 	h3,
 	h4,

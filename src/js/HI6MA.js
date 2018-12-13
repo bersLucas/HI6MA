@@ -11,7 +11,7 @@ var leftM = 0; //distance #book moves to the right
     Elements
 */
 var eHeader = document.getElementsByTagName("header")[0];
-var eSidebar = document.getElementsByTagName("sidebar")[0];
+var eSidebar = document.getElementsByTagName("div")[0];
 var eBack = document.getElementById("back");
 var eSeries = document.getElementById("series");
 var eBook = document.getElementById("book");

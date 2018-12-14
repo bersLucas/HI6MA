@@ -11,7 +11,7 @@ var leftM = 0; //distance #book moves to the right
     Elements
 */
 var eHeader = document.getElementsByTagName("header")[0];
-var eSidebar = document.getElementsByTagName("sidebar")[0];
+var eSidebar = document.getElementsByTagName("div")[0];
 var eBack = document.getElementById("back");
 var eSeries = document.getElementById("series");
 var eBook = document.getElementById("book");
@@ -106,6 +106,7 @@ var nextPage = function (e) {
     //calculate the amount to move #book
     leftM += document.querySelector(".currentPage").offsetWidth;
 
+    console.log('a');
     //try for a .png file
     try {
       document.querySelector("#pagePNG" + HI6MA.currentPage).classList.toggle("currentPage");
@@ -216,9 +217,9 @@ function loadBook() {
   page = 1;
   eBook.innerHTML = "";
   leftM = 0;
-  
+
   //add a .png image
-  imgSrc = "i/" + HI6MA.series + "/" + HI6MA.chapter_full + "/" + pformat(page) + ".png";
+  imgSrc = HI6MA.book.folder + "/" + HI6MA.chapter_full + "/" + pformat(page) + ".png";
   var add = document.createElement("img");
   add.setAttribute("src", imgSrc);
   add.setAttribute("id", "pagePNG" + page);
@@ -226,8 +227,7 @@ function loadBook() {
   eBook.appendChild(add);
   
   //add a .jpg image
-  imgSrc = "i/" + HI6MA.series + "/" + HI6MA.chapter_full + "/" + pformat(page) + ".jpg";
-  "/" + pformat(HI6MA.currentPage) + ".jpg";
+  imgSrc = HI6MA.book.folder + "/" + HI6MA.chapter_full + "/" + pformat(page) + ".jpg";
   var add = document.createElement("img");
   add.setAttribute("src", imgSrc);
   add.setAttribute("id", "pageJPG" + page);
@@ -250,7 +250,7 @@ function loadImg(page) {
   document.querySelector("#pagePNG" + page).onload = function () {
       appendImg(page);
     };
-  
+
   //when a .jpg is loaded, load the next page
   document.querySelector("#pageJPG" + page).onload = function () {
     appendImg(page);
@@ -264,7 +264,7 @@ function appendImg(page) {
   page++;
   
   //add a .png file
-  imgSrc = "i/" + HI6MA.series + "/" + HI6MA.chapter_full + "/" + pformat(page) + ".png";
+  imgSrc = HI6MA.book.folder + "/" + HI6MA.chapter_full + "/" + pformat(page) + ".png";
   var add = document.createElement("img");
   add.setAttribute("src", imgSrc);
   add.setAttribute("id", "pagePNG" + page);
@@ -272,7 +272,7 @@ function appendImg(page) {
   eBook.appendChild(add);
   
   //add a .jpg file
-  imgSrc = "i/" + HI6MA.series + "/" + HI6MA.chapter_full + "/" + pformat(page) + ".jpg";
+  imgSrc = HI6MA.book.folder + "/" + HI6MA.chapter_full + "/" + pformat(page) + ".jpg";
   var add = document.createElement("img");
   add.setAttribute("src", imgSrc);
   add.setAttribute("id", "pageJPG" + page);

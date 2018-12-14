@@ -3,10 +3,14 @@
 A W I D E comic reader. Successor to <a href="/bersLucas/MSlide">MSlide</a>.
 HI6MA was created to give users a larger reading area and remove dependency on jQuery.
 
-### Set up
+### Requirements for building
+* [NodeJs](https://nodejs.org/en/) 
+* [Yarn](https://yarnpkg.com/en/)
 
-* Clone [the master branch](https://github.com/bersLucas/HI6MA/archive/master.zip) onto any web server.
-* In the **/i/** folder, create folders for each series.
+### Image Root Folder Set up
+
+* Create a directory to host your image files
+* In that folder, create folders for each series.
   * <sub>(The series' folder names must contain no spaces,and must be unique.)</sub>
 * Inside of these folders, you will add the following files:
   * **cover.jpg** : The cover that will display on the main page.
@@ -36,10 +40,12 @@ Translator's Name
 ### Example file structure:
 <img src="https://cloud.githubusercontent.com/assets/3892772/19536607/aba5b538-961a-11e6-901b-a7ba8085b9af.png"/>
 
-### Sass
-Colors are represented in sass variabless. Use **css/_variables.scss** to edit the background and accent colors. <a href="http://sass-lang.com/">You will need a sass compiler</a>.
+Run the following commands to generate your website:
 
-### Dependencies 
-<a href="http://hammerjs.github.io/">Hammer.js</a> - Mobile swiping events.
+```bash
+# Generate a booklist
+node booklistgen.js [root image folder]
 
-<a href="https://github.com/vuejs/vue">Vue.js</a> - Interface library
+# Build index file
+yarn run build
+```

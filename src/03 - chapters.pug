@@ -1,0 +1,14 @@
+div#chapters(v-bind:class="{openChapter: openChapter, slideOut: readingBook}")
+    img(class="cover_image" v-bind:src="bookCover(book)")
+    div.book_information
+        h2(v-if="book.name") {{book.name}}
+        h3(v-if="book.kanji") {{book.kanji}}
+        h4(v-if="book.author") Written by:
+            b {{book.author}}
+        h5(v-if="book.TL") Translated by:
+            b {{book.TL}}
+    ul
+        li(v-for="(chapter, index) in loadedChapters")
+            div.side_border(v-if="index % 2 == 0" v-bind:style="{background: book.BG}")
+            div.side_border(v-if="index % 2 != 0" v-bind:style="{background: book.BBG}")
+            a(v-bind:href="'#' + series + '_'+ truncateChapter(index)" v-bind:id="truncateChapter(index)" v-on:click="loadChapter(index)") {{chapter}}

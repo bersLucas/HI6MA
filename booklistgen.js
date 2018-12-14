@@ -10,7 +10,7 @@ booklist.forEach(book => {
         .split('\n');
 
     let bookObj = {
-        folder: `${rootFolder}/${book}`,
+        folder: `../${rootFolder}/${book}`,
         name: bookData[0],
         kanji: bookData[1],
         author: bookData[2],
@@ -19,7 +19,7 @@ booklist.forEach(book => {
         BBG: bookData[5]
     };
 
-    bookObj.chapters = fs.readdirSync(bookObj.folder)
+    bookObj.chapters = fs.readdirSync(`${rootFolder}/${book}`)
         .filter(chapter => {
             return fs.lstatSync(`${rootFolder}/${book}/${chapter}`).isDirectory()
         });

@@ -36,8 +36,12 @@ Translator's Name
 ### Example file structure:
 <img src="https://cloud.githubusercontent.com/assets/3892772/19536607/aba5b538-961a-11e6-901b-a7ba8085b9af.png"/>
 
-### Sass
-Colors are represented in sass variabless. Use **css/_variables.scss** to edit the background and accent colors. <a href="http://sass-lang.com/">You will need a sass compiler</a>.
+Run the following commands to generate your website:
 
-### Dependencies 
-<a href="https://github.com/vuejs/vue">Vue.js</a> - Interface library
+```bash
+# Generate a booklist
+node booklistgen.js [root image folder]
+
+# Build index file
+yarn run build
+```

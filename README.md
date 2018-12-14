@@ -3,10 +3,14 @@
 A W I D E comic reader. Successor to <a href="/bersLucas/MSlide">MSlide</a>.
 HI6MA was created to give users a larger reading area and remove dependency on jQuery.
 
-### Set up
+### Requirements for building
+* [NodeJs](https://nodejs.org/en/) 
+* [Yarn](https://yarnpkg.com/en/)
 
-* Clone [the master branch](https://github.com/bersLucas/HI6MA/archive/master.zip) onto any web server.
-* In the **/i/** folder, create folders for each series.
+### Image Root Folder Set up
+
+* Create a directory to host your image files
+* In that folder, create folders for each series.
   * <sub>(The series' folder names must contain no spaces,and must be unique.)</sub>
 * Inside of these folders, you will add the following files:
   * **cover.jpg** : The cover that will display on the main page.

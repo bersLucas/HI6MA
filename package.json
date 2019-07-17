@@ -8,18 +8,15 @@
   "license": "MIT",
   "private": false,
   "devDependencies": {
-    "inline-source-cli": "^1.2.0",
+    "inline-source": "^6.2.0",
     "pug-cli": "^1.0.0-alpha6",
-    "sass": "^1.15.2"
+    "sass": "^1.22.5"
   },
   "scripts": {
-    "pug": "pug src/index.pug -o dist",
-    "build": "yarn run pug && yarn run sass && yarn run inline",
-    "inline": "inline-source --compress dist/index.html dist/index.html",
-    "sass": "sass src/style/style.scss src/style/style.css --style compressed"
+    "build": "node build.js"
   },
   "dependencies": {
     "normalize.css": "^8.0.1",
-    "vue": "^2.5.21"
+    "vue": "^2.6.10"
   }
 }
